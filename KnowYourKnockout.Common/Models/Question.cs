@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace KnowYourKnockout.Data.Models
+namespace KnowYourKnockout.Common.Models
 {
     public class Question
     {
@@ -15,7 +16,7 @@ namespace KnowYourKnockout.Data.Models
         public DateTime AskedOn { get; set; }
         public DateTime? AnsweredOn { get; set; }
 
-        public virtual Category Category { get; set; }
+        public virtual List<Tag> Tags { get; set; }
         public virtual User Asker { get; set; }
         public virtual User Responder { get; set; }
     }

@@ -1,7 +1,10 @@
 ﻿using System;
 
-namespace KnowYourKnockout.Data.Models
+namespace KnowYourKnockout.Common.Models
 {
+    /// <summary>
+    /// MAY NOT NEED!!!!
+    /// </summary>
     public class FriendRelationship
     {
         public Guid User1Id { get; set; }

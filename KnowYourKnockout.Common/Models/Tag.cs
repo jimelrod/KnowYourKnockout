@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace KnowYourKnockout.Data.Models
+namespace KnowYourKnockout.Common.Models
 {
-    public class Category
+    public class Tag
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

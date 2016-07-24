@@ -9,6 +9,10 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "KnowYourKnockout.Web.Api", 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "KnowYourKnockout.Web.Ui", "KnowYourKnockout.Web.Ui\KnowYourKnockout.Web.Ui.xproj", "{13E43A5E-FFC5-409E-A5F9-BC46AEAB673E}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "KnowYourKnockout.Data", "KnowYourKnockout.Data\KnowYourKnockout.Data.xproj", "{D2355B42-76A0-4F3A-BE0D-A7472ED3696C}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "KnowYourKnockout.Business", "KnowYourKnockout.Business\KnowYourKnockout.Business.xproj", "{556DE24F-542E-4D4D-BDB0-10DB3845C83B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,14 @@ Global
 		{13E43A5E-FFC5-409E-A5F9-BC46AEAB673E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13E43A5E-FFC5-409E-A5F9-BC46AEAB673E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13E43A5E-FFC5-409E-A5F9-BC46AEAB673E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2355B42-76A0-4F3A-BE0D-A7472ED3696C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2355B42-76A0-4F3A-BE0D-A7472ED3696C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2355B42-76A0-4F3A-BE0D-A7472ED3696C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2355B42-76A0-4F3A-BE0D-A7472ED3696C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{556DE24F-542E-4D4D-BDB0-10DB3845C83B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{556DE24F-542E-4D4D-BDB0-10DB3845C83B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{556DE24F-542E-4D4D-BDB0-10DB3845C83B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{556DE24F-542E-4D4D-BDB0-10DB3845C83B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

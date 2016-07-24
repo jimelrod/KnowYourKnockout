@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowYourKnockout.Common", "KnowYourKnockout.Common\KnowYourKnockout.Common.csproj", "{E820D29D-DFD3-484A-9117-D16F426576A0}"
-EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "KnowYourKnockout.Database", "KnowYourKnockout.Database\KnowYourKnockout.Database.sqlproj", "{91CD9F3B-81A2-470D-B6DB-5643AA824118}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowYourKnockout.Data", "KnowYourKnockout.Data\KnowYourKnockout.Data.csproj", "{AE0E9404-7CC6-4CA7-B542-0851FAB0AA36}"
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E820D29D-DFD3-484A-9117-D16F426576A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E820D29D-DFD3-484A-9117-D16F426576A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E820D29D-DFD3-484A-9117-D16F426576A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E820D29D-DFD3-484A-9117-D16F426576A0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{91CD9F3B-81A2-470D-B6DB-5643AA824118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{91CD9F3B-81A2-470D-B6DB-5643AA824118}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91CD9F3B-81A2-470D-B6DB-5643AA824118}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

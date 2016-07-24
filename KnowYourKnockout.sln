@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "KnowYourKnockout.Database", "KnowYourKnockout.Database\KnowYourKnockout.Database.sqlproj", "{91CD9F3B-81A2-470D-B6DB-5643AA824118}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowYourKnockout.Data", "KnowYourKnockout.Data\KnowYourKnockout.Data.csproj", "{AE0E9404-7CC6-4CA7-B542-0851FAB0AA36}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "KnowYourKnockout.Web.Api", "KnowYourKnockout.Web.Api\KnowYourKnockout.Web.Api.xproj", "{EAD77D6F-5983-4B65-AEC2-28E47C8F229D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowYourKnockout.Business", "KnowYourKnockout.Business\KnowYourKnockout.Business.csproj", "{A7A7419E-66C7-49A5-83FE-696190FDE77F}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "KnowYourKnockout.Web.Ui", "KnowYourKnockout.Web.Ui\KnowYourKnockout.Web.Ui.xproj", "{13E43A5E-FFC5-409E-A5F9-BC46AEAB673E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,14 +21,14 @@ Global
 		{91CD9F3B-81A2-470D-B6DB-5643AA824118}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91CD9F3B-81A2-470D-B6DB-5643AA824118}.Release|Any CPU.Build.0 = Release|Any CPU
 		{91CD9F3B-81A2-470D-B6DB-5643AA824118}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{AE0E9404-7CC6-4CA7-B542-0851FAB0AA36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE0E9404-7CC6-4CA7-B542-0851FAB0AA36}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE0E9404-7CC6-4CA7-B542-0851FAB0AA36}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE0E9404-7CC6-4CA7-B542-0851FAB0AA36}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A7A7419E-66C7-49A5-83FE-696190FDE77F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A7A7419E-66C7-49A5-83FE-696190FDE77F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A7A7419E-66C7-49A5-83FE-696190FDE77F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A7A7419E-66C7-49A5-83FE-696190FDE77F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAD77D6F-5983-4B65-AEC2-28E47C8F229D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAD77D6F-5983-4B65-AEC2-28E47C8F229D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAD77D6F-5983-4B65-AEC2-28E47C8F229D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAD77D6F-5983-4B65-AEC2-28E47C8F229D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13E43A5E-FFC5-409E-A5F9-BC46AEAB673E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13E43A5E-FFC5-409E-A5F9-BC46AEAB673E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13E43A5E-FFC5-409E-A5F9-BC46AEAB673E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13E43A5E-FFC5-409E-A5F9-BC46AEAB673E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

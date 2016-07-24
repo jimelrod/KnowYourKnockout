@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="85773c00-945a-4c15-ada8-d9e10ac1ab19" ChangeDateTime="01/23/2016 05:43:49">
+    <Property Name="ElementName" Value="[dbo].[Friends].[UserIdA]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Friends]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Requester" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6f77eafe-e893-49fb-8a9d-f274afa3479b" ChangeDateTime="01/23/2016 05:43:53">
+    <Property Name="ElementName" Value="[dbo].[Friends].[UserIdB]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Friends]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Requestee" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ecd7fbbc-41ee-427a-b14f-5f2a4bf1658e" ChangeDateTime="01/29/2016 07:30:23">
+    <Property Name="ElementName" Value="[dbo].[UserQuestion].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UserQuestion]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="48cf9e96-1fcf-44cc-9108-d32f009429a3" ChangeDateTime="01/29/2016 07:42:08">
+    <Property Name="ElementName" Value="[dbo].[Friends].[Requester]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Friends]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RequesterId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="776a809b-f742-49cf-9691-b56f781a7145" ChangeDateTime="01/29/2016 07:42:11">
+    <Property Name="ElementName" Value="[dbo].[Friends].[Requestee]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Friends]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RequesteeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="29d18584-486e-4ec0-8e07-ddb9ad22ac69" ChangeDateTime="03/22/2016 02:46:04">
+    <Property Name="ElementName" Value="[dbo].[Answer].[IsLocked]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Answer]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsPublished" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7880e881-266e-4ee8-b5c3-eeb9553ff5af" ChangeDateTime="03/22/2016 03:05:16">
+    <Property Name="ElementName" Value="[dbo].[Question].[IsPublic]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Question]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsQuestionPublic" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c2ca5c55-852c-4e57-9bfb-d1dc90f5a0ca" ChangeDateTime="03/22/2016 03:05:24">
+    <Property Name="ElementName" Value="[dbo].[Question].[UserId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Question]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AskerId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="033c6751-69fc-45f7-908d-3b0557d6ccce" ChangeDateTime="03/22/2016 03:30:32">
+    <Property Name="ElementName" Value="[dbo].[FriendRequest].[LastModified]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[FriendRequest]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ModifiedOn" />
+  </Operation>
+</Operations>

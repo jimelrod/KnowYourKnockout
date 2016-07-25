@@ -22,6 +22,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{25032BD4-CF3D-4393-80CB-19020B620F0F}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "KnowYourKnockout.Business.Test", "KnowYourKnockout.Business.Test\KnowYourKnockout.Business.Test.xproj", "{F7349294-821C-4D9E-AB68-6717906C199F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,8 +58,15 @@ Global
 		{A2E61CEE-54D2-4517-A25E-4F4F2828538D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2E61CEE-54D2-4517-A25E-4F4F2828538D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2E61CEE-54D2-4517-A25E-4F4F2828538D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7349294-821C-4D9E-AB68-6717906C199F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7349294-821C-4D9E-AB68-6717906C199F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7349294-821C-4D9E-AB68-6717906C199F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7349294-821C-4D9E-AB68-6717906C199F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F7349294-821C-4D9E-AB68-6717906C199F} = {25032BD4-CF3D-4393-80CB-19020B620F0F}
 	EndGlobalSection
 EndGlobal

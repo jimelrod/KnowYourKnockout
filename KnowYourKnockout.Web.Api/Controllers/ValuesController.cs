@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using KnowYourKnockout.Common.Models;
 
 namespace KnowYourKnockout.Web.Api.Controllers
 {
@@ -18,9 +19,13 @@ namespace KnowYourKnockout.Web.Api.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public User Get(int id)
         {
-            return "value";
+            return new User
+            {
+                Id = Guid.NewGuid(),
+                FirstName = string.Format("{0} - Jim", id)
+            };
         }
 
         // POST api/values

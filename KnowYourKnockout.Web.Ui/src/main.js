@@ -3,7 +3,14 @@ import 'bootstrap';
 export function configure(aurelia) {
   aurelia.use
     .standardConfiguration()
-    .developmentLogging();
+    .developmentLogging()
+    .plugin('aurelia-configuration', config => {
+        config.setEnvironments({
+            local: ['localhost:49860'],
+            development: ['localhost:9001'],
+            production: ['localhost:9005']
+        });
+    });
 
   //Uncomment the line below to enable animation.
   //aurelia.use.plugin('aurelia-animator-css');

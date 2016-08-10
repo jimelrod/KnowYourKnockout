@@ -12,9 +12,20 @@ namespace KnowYourKnockout.Web.Api.Controllers
     {
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<User> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new User[] {
+                new User
+                {
+                    Id = Guid.NewGuid(),
+                    FirstName = "1 - Jim"
+                },
+                new User
+                {
+                    Id = Guid.NewGuid(),
+                    FirstName = "2 - Bill"
+                }
+            };
         }
 
         // GET api/values/5

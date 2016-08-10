@@ -8,7 +8,7 @@ export class UserService{
         http.configure(config => {
             config
               .useStandardConfiguration()
-              .withBaseUrl('http://localhost:4753/api');
+              .withBaseUrl('http://localhost:4753/api/');
         });
 
         this.http = http;

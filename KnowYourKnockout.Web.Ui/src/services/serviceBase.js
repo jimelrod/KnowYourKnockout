@@ -15,18 +15,23 @@ export class ServiceBase {
     }
 
     get(endpoint, params) {
-        if (params && typeof params === 'object') {
-            let queryString = "?";
-            let kvpAry = [];
+        if (params) {
+            if (typeof params === 'object') {
+                let queryString = "?";
+                let kvpAry = [];
 
-            for (var key in params) {
-                if (params.hasOwnProperty(key)) {
-                    console.log(key + " -> " + p[key]);
-                    kvpAry.push(`${param}=${param[key]}`);
+                for (var key in params) {
+                    if (params.hasOwnProperty(key)) {
+                        console.log(key + " -> " + p[key]);
+                        kvpAry.push(`${param}=${param[key]}`);
+                    }
                 }
-            }
 
-            endpoint += `?${kvpAry.join('&')}`;
+                endpoint += `?${kvpAry.join('&')}`;
+            }
+            else if (typeof params === 'string') {
+                endpoint += `?${params}`;
+            }
         }
 
         return this.http.fetch(endpoint)

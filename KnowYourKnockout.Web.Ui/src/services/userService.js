@@ -8,8 +8,7 @@ export class UserService {
     }
 
     getUser(id) {        
-        return this.svc.fetch('values/' + id)
-            .then(response => response.json())
+        return this.svc.get('values/' + id)
             .then(user => console.log(user));
     }
 }

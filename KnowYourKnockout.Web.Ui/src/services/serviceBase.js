@@ -14,7 +14,49 @@ export class ServiceBase {
         this.http = http;
     }
 
-    fetch(o) {
-        return this.http.fetch(o);
+    get(endpoint, params) {
+        if (params && typeof params === 'object') {
+            let queryString = "?";
+            let kvpAry = [];
+
+            for (var key in params) {
+                if (params.hasOwnProperty(key)) {
+                    console.log(key + " -> " + p[key]);
+                    kvpAry.push(`${param}=${param[key]}`);
+                }
+            }
+
+            endpoint += `?${kvpAry.join('&')}`;
+        }
+
+        return this.http.fetch(endpoint)
+            .then(response => {
+                console.log(response);
+                return response.json();
+            });
+    }
+
+    post(endpoint, body) {
+        return this.http.fetch(endpoint, {
+            method: 'post',
+            body: json(body)
+        }).then(response => {
+            console.log(response);
+            return response.json();
+        });
+    }
+
+    put() {
+        return this.http.fetch(endpoint, {
+            method: 'put',
+            body: json(body)
+        }).then(response => response.json());
+    }
+
+    remove() {
+        return this.http.fetch(endpoint, {
+            method: 'delete',
+            body: json(body)
+        }).then(response => response.status);
     }
 }

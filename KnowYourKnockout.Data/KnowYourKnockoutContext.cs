@@ -1,4 +1,4 @@
-﻿using KnowYourKnockout.Common.Models;
+﻿using KnowYourKnockout.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace KnowYourKnockout.Data

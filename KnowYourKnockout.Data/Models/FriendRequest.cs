@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KnowYourKnockout.Common.Models
+namespace KnowYourKnockout.Data.Models
 {
     public class FriendRequest
     {

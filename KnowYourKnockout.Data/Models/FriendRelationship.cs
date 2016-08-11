@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KnowYourKnockout.Common.Models
+namespace KnowYourKnockout.Data.Models
 {
     /// <summary>
     /// MAY NOT NEED!!!!

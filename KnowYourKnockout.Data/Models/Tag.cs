@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace KnowYourKnockout.Common.Models
+namespace KnowYourKnockout.Data.Models
 {
     public class Tag
     {

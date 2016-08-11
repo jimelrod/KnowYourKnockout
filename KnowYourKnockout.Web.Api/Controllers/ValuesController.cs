@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using KnowYourKnockout.Common.Models;
+using KnowYourKnockout.Data.Models;
 
 namespace KnowYourKnockout.Web.Api.Controllers
 {

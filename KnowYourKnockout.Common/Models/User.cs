@@ -13,8 +13,8 @@ namespace KnowYourKnockout.Common.Models
         public DateTime JoinedOn { get; set; }
 
         public virtual List<User> Friends { get; set; }
-        public virtual List<Question> QuestionsSent { get; set; }
-        public virtual List<Question> QuestionsReceived { get; set; }
+        public virtual List<Question> QuestionsAsked { get; set; }
+        public virtual List<Question> QuestionsAnswered { get; set; }
         public virtual List<FriendRequest> RequestsSent { get; set; }
         public virtual List<FriendRequest> RequestsReceived { get; set; }
     }

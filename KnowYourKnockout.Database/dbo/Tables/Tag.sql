@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Category]
+﻿CREATE TABLE [dbo].[Tag]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
     [Name] NVARCHAR(50) NOT NULL,

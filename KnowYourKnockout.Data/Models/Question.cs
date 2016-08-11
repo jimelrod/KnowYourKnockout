@@ -12,7 +12,6 @@ namespace KnowYourKnockout.Data.Models
         public string AnswerText { get; set; }
         public bool IsQuestionPublic { get; set; }
         public bool IsAnswerPublished { get; set; }
-        public Guid CategoryId { get; set; }
         public DateTime AskedOn { get; set; }
         public DateTime? AnsweredOn { get; set; }
 

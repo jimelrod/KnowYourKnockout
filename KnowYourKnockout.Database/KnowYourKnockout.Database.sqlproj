@@ -72,13 +72,14 @@
   <ItemGroup>
     <Build Include="dbo\Tables\User.sql" />
     <Build Include="dbo\Tables\Question.sql" />
-    <Build Include="dbo\Tables\Category.sql" />
+    <Build Include="dbo\Tables\Tag.sql" />
     <Build Include="dbo\Tables\FriendRequest.sql" />
     <Build Include="dbo\Programmability\Functions\FriendRequestCount.sql" />
     <None Include="dbo\Scripts\PostDeploy\CategorySeedData.sql" />
     <None Include="dbo\Scripts\PostDeploy\FriendRequestSeedData.sql" />
     <None Include="dbo\Scripts\PostDeploy\UserSeedData.sql" />
     <Build Include="dbo\Views\FriendRelationship.sql" />
+    <Build Include="dbo\Tables\QuestionTag.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Local.publish.xml" />

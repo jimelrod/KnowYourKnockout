@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KnowYourKnockout.Data.Models
 {
@@ -9,5 +7,10 @@ namespace KnowYourKnockout.Data.Models
     {
         public Guid QuestionId { get; set; }
         public Guid TagId { get; set; }
+
+        [ForeignKey("Id")]
+        public virtual Tag Tag { get; set; }
+        [ForeignKey("Id")]
+        public virtual Question Question { get; set; }
     }
 }

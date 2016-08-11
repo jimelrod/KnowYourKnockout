@@ -3,16 +3,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KnowYourKnockout.Data
 {
-    public class KnowYourKnockoutContext : DbContext
+    public class KnowYourKnockoutContext : DbContext//, IKnowYourKnockoutContext
     {
         public KnowYourKnockoutContext(DbContextOptions<KnowYourKnockoutContext> options)
             : base(options)
         {
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<FriendRequest> FriendRequests { get; set; }
-        public DbSet<Tag> Tags { get; set; }
-        public DbSet<Question> Questions { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<FriendRequest> FriendRequest { get; set; }
+        public DbSet<Question> Question { get; set; }
+        public DbSet<Tag> Tag { get; set; }
     }
 }

@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using KnowYourKnockout.Business;
+using KnowYourKnockout.Data;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -25,8 +28,15 @@ namespace KnowYourKnockout.Web.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connection = @"Server=W530-JELROD\SQLSVR2014;Database=KnowYourKnockout;Trusted_Connection=True";
+            services.AddDbContext<KnowYourKnockoutContext>(options => options.UseSqlServer(connection));
+
             // Add framework services.
             services.AddMvc();
+
+            services.AddTransient<UserLogic, UserLogic>();
+            services.AddTransient<TagLogic, TagLogic>();
+            services.AddTransient<KnowYourKnockoutContext, KnowYourKnockoutContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

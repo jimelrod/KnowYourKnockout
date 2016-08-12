@@ -14,5 +14,6 @@ namespace KnowYourKnockout.Data
         public DbSet<FriendRequest> FriendRequest { get; set; }
         public DbSet<Question> Question { get; set; }
         public DbSet<Tag> Tag { get; set; }
+        public DbSet<QuestionTag> QuestionTag { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace KnowYourKnockout.Data.Models
         
         [ForeignKey("TagId")]
         public virtual Tag Tag { get; set; }
-        //[ForeignKey("QuestionId")]
-        //public virtual Question Question { get; set; }
+        [ForeignKey("QuestionId")]
+        public virtual Question Question { get; set; }
     }
 }

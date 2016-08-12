@@ -11,7 +11,7 @@ namespace KnowYourKnockout.Data.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
 
-        //[InverseProperty("TagId")]
+        [InverseProperty("Tag")]
         public virtual List<QuestionTag> QuestionTags { get; set; }
     }
 }

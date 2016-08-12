@@ -19,9 +19,12 @@ namespace KnowYourKnockout.Web.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Tag> Get()
+        public IActionResult Get()
         {
-            return _tagLogic.GetTags();
+            Exception ex;
+            var tags = _tagLogic.GetTags(out ex);
+
+            return ex == null ? Json(tags) : Json(ex);
         }
     }
 }

@@ -18,11 +18,11 @@ namespace KnowYourKnockout.Data.Models
         public DateTime AskedOn { get; set; }
         public DateTime? AnsweredOn { get; set; }
 
-        [InverseProperty("Id")]
-        public virtual List<Tag> Tags { get; set; }
-        [ForeignKey("AskerId")]
-        public virtual User Asker { get; set; }
-        [ForeignKey("ResponderId")]
-        public virtual User Responder { get; set; }
+        //[InverseProperty("QuestionId")]
+        //public virtual List<QuestionTag> QuestionTags { get; set; }
+        //[ForeignKey("AskerId")]
+        //public virtual User Asker { get; set; }
+        //[ForeignKey("ResponderId")]
+        //public virtual User Responder { get; set; }
     }
 }

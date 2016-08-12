@@ -16,18 +16,18 @@ namespace KnowYourKnockout.Business
             _context = context;
         }
 
-        public List<Tag> GetTags()
+        public List<Tag> GetTags(out Exception exception)
         {
+            exception = null;
             var tags = new List<Tag>();
 
             try
-            {
-                
+            {                
                 tags = _context.Tag.ToList();
             }
             catch (Exception ex)
             {
-                Console.Write(ex.Message);
+                exception = ex;
             }
 
             return tags;

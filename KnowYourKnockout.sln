@@ -24,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{25032BD4
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "KnowYourKnockout.Business.Test", "KnowYourKnockout.Business.Test\KnowYourKnockout.Business.Test.xproj", "{F7349294-821C-4D9E-AB68-6717906C199F}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "KnowYourKnockout.Web.Ui", "KnowYourKnockout.Web.Ui\KnowYourKnockout.Web.Ui.xproj", "{E8384E4F-09C1-421B-8C4F-04483F68E7E2}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "KnowYourKnockout.Web.Ui", "KnowYourKnockout.Web.Ui\KnowYourKnockout.Web.Ui.xproj", "{2F50B3F9-241A-463B-BE27-79790EEEDEB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,10 +58,10 @@ Global
 		{F7349294-821C-4D9E-AB68-6717906C199F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7349294-821C-4D9E-AB68-6717906C199F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7349294-821C-4D9E-AB68-6717906C199F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E8384E4F-09C1-421B-8C4F-04483F68E7E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E8384E4F-09C1-421B-8C4F-04483F68E7E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E8384E4F-09C1-421B-8C4F-04483F68E7E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E8384E4F-09C1-421B-8C4F-04483F68E7E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F50B3F9-241A-463B-BE27-79790EEEDEB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F50B3F9-241A-463B-BE27-79790EEEDEB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F50B3F9-241A-463B-BE27-79790EEEDEB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F50B3F9-241A-463B-BE27-79790EEEDEB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

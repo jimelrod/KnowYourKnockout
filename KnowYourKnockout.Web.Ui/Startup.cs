@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace skeleton
+namespace KnowYourKnockout.Web.Ui
 {
     public class Startup
     {

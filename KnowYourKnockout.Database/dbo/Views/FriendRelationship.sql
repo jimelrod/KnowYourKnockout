@@ -1,7 +1,7 @@
 ﻿CREATE VIEW [dbo].[FriendRelationship] 
 AS 
-  SELECT [requesterid] AS [User1Id], 
-         [requesteeid] AS [User2Id] 
-  FROM   [dbo].[friendrequest] 
-  WHERE  [isactive] = 1 
-         AND [isaccepted] = 1 
+  SELECT [RequesterId] AS [User1Id], 
+         [RequesteeId] AS [User2Id] 
+  FROM   [dbo].[FriendRequest] 
+  WHERE  [IsActive] = 1 
+         AND [IsAccepted] = 1 

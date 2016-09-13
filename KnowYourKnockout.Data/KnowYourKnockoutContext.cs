@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KnowYourKnockout.Data
 {
-    public class KnowYourKnockoutContext : DbContext//, IKnowYourKnockoutContext
+    public class KnowYourKnockoutContext : DbContext
     {
         public KnowYourKnockoutContext(DbContextOptions<KnowYourKnockoutContext> options)
             : base(options)
@@ -15,5 +15,6 @@ namespace KnowYourKnockout.Data
         public DbSet<Question> Question { get; set; }
         public DbSet<Tag> Tag { get; set; }
         public DbSet<QuestionTag> QuestionTag { get; set; }
+        public DbSet<Error> Error { get; set; }
     }
 }

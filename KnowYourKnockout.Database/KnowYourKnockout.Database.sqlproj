@@ -80,6 +80,7 @@
     <None Include="dbo\Scripts\PostDeploy\UserSeedData.sql" />
     <Build Include="dbo\Views\FriendRelationship.sql" />
     <Build Include="dbo\Tables\QuestionTag.sql" />
+    <Build Include="dbo\Tables\Error.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Local.publish.xml" />

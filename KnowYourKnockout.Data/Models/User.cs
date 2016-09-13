@@ -9,9 +9,10 @@ namespace KnowYourKnockout.Data.Models
     {
         [Key]
         public Guid Id { get; set; }
+        public string FirebaseId { get; set; }
         public string EmailAddress { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string DisplayName { get; set; }
+        public string PhotoUrl { get; set; }
         public bool IsActive { get; set; }
         public DateTime JoinedOn { get; set; }
 

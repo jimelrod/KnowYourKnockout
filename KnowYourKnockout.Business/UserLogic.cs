@@ -31,5 +31,21 @@ namespace KnowYourKnockout.Business
 
             return users;
         }
+
+        public User AddUser(User user)
+        {
+            try
+            {
+                _context.User.Add(user);
+                _context.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                Console.Write(ex.Message);
+                user = null;
+            }
+
+            return user;
+        }
     }
 }

@@ -20,16 +20,16 @@ namespace KnowYourKnockout.Web.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<User> Get()
+        public IActionResult Get()
         {
             try
             {
-                return _userLogic.GetUsers();
+                return Json(_userLogic.GetUsers());
             }
             catch (Exception ex)
             {
                 Console.Write(ex.Message);
-                return null;
+                return NoContent();
             }
         }
 
@@ -41,7 +41,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
                 return new User
                 {
                     Id = Guid.NewGuid(),
-                    FirstName = string.Format("{0} - Jim", id)
+                    DisplayName = string.Format("{0} - Jim", id)
                 };
             }
             catch (Exception ex)
@@ -49,6 +49,22 @@ namespace KnowYourKnockout.Web.Api.Controllers
                 Console.Write(ex.Message);
                 return null;
             }
+        }
+
+        [HttpPost]
+        public User Post(User user)
+        {
+            try
+            {
+                user = _userLogic.AddUser(user);
+            }
+            catch(Exception ex)
+            {
+                Console.Write(ex.Message);
+                user = null;
+            }
+
+            return user;
         }
     }
 }

@@ -18,12 +18,12 @@ namespace KnowYourKnockout.Web.Api.Controllers
                 new User
                 {
                     Id = Guid.NewGuid(),
-                    FirstName = "1 - Jim"
+                    DisplayName = "1 - Jim"
                 },
                 new User
                 {
                     Id = Guid.NewGuid(),
-                    FirstName = "2 - Bill"
+                    DisplayName = "2 - Bill"
                 }
             };
         }
@@ -35,7 +35,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
             return new User
             {
                 Id = Guid.NewGuid(),
-                FirstName = string.Format("{0} - Jim", id)
+                DisplayName = string.Format("{0} - Jim", id)
             };
         }
 

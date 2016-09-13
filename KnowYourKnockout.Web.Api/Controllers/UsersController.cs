@@ -1,6 +1,7 @@
 ﻿using KnowYourKnockout.Business;
 using KnowYourKnockout.Data;
 using KnowYourKnockout.Data.Models;
+using KnowYourKnockout.Utility;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,15 @@ namespace KnowYourKnockout.Web.Api.Controllers
     [Route("api/[controller]")]
     public class UsersController : Controller
     {
-        private UserLogic _userLogic;
+        const string CLASS_NAME = "KnowYourKnockout.Web.Api.Controllers.UsersController";
 
-        public UsersController(UserLogic userLogic)
+        private UserLogic _userLogic;
+        private Log _log;
+
+        public UsersController(UserLogic userLogic, Log log)
         {
             _userLogic = userLogic;
+            _log = log;
         }
 
         [HttpGet]
@@ -28,7 +33,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
             }
             catch (Exception ex)
             {
-                Console.Write(ex.Message);
+                _log.Insert(ex.Message, CLASS_NAME, "Get()");
                 return NoContent();
             }
         }
@@ -43,6 +48,9 @@ namespace KnowYourKnockout.Web.Api.Controllers
                     Id = Guid.NewGuid(),
                     DisplayName = string.Format("{0} - Jim", id)
                 };
+
+                //return _userLogic.
+
             }
             catch (Exception ex)
             {

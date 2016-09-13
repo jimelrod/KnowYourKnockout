@@ -1,5 +1,6 @@
 ﻿using KnowYourKnockout.Business;
 using KnowYourKnockout.Data;
+using KnowYourKnockout.Utility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -37,6 +38,7 @@ namespace KnowYourKnockout.Web.Api
             services.AddTransient<UserLogic, UserLogic>();
             services.AddTransient<TagLogic, TagLogic>();
             services.AddTransient<KnowYourKnockoutContext, KnowYourKnockoutContext>();
+            services.AddTransient<Log, Log>(); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

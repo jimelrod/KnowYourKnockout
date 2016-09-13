@@ -2,6 +2,7 @@
   "dependencies": {
     "KnowYourKnockout.Business": "1.0.0-*",
     "KnowYourKnockout.Common": "1.0.0-*",
+    "KnowYourKnockout.Utility": "1.0.0-*",
     "Microsoft.AspNetCore.Cors": "1.0.0",
     "Microsoft.AspNetCore.Mvc": "1.0.0",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",

@@ -83,11 +83,9 @@
     <Build Include="dbo\Tables\Error.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Local.publish.xml" />
-    <None Include="LocalDropCreate.publish.xml" />
-    <None Include="OverkillServer.publish.xml" />
     <None Include="dbo\Scripts\PostDeploy\QuestionSeedData.sql" />
     <None Include="dbo\Scripts\PostDeploy\QuestionTagSeedData.sql" />
+    <None Include="KnowYourKnockout.Database.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="dbo\Scripts\PostDeploy.sql" />

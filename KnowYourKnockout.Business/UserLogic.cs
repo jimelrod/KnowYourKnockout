@@ -9,43 +9,50 @@ namespace KnowYourKnockout.Business
 {
     public class UserLogic// : LogicBase
     {
-        private KnowYourKnockoutContext _context;
+        private IKnowYourKnockoutDataApi _dataApi;
 
-        public UserLogic(KnowYourKnockoutContext context)
+        public UserLogic(IKnowYourKnockoutDataApi dataApi)
         {
-            _context = context;
+            _dataApi = dataApi;
         }
 
         public List<User> GetUsers()
         {
-            var users = new List<User>();
-
             try
             {
-                users = _context.User.ToList();
+                return _dataApi.UserRepository.Get();
             }
             catch(Exception ex)
             {
                 Console.Write(ex.Message);
+                return null;
             }
+        }
 
-            return users;
+        public User GetUser(Guid id)
+        {
+            try
+            {
+                return _dataApi.UserRepository.Get(id);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+                return null;
+            }
         }
 
         public User AddUser(User user)
         {
             try
             {
-                _context.User.Add(user);
-                _context.SaveChanges();
+                return _dataApi.UserRepository.Add(user);
             }
             catch(Exception ex)
             {
                 Console.Write(ex.Message);
-                user = null;
+                return null;
             }
-
-            return user;
         }
     }
 }

@@ -39,17 +39,17 @@ namespace KnowYourKnockout.Web.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public User Get(int id)
+        public User Get(Guid id)
         {
             try
             {
-                return new User
-                {
-                    Id = Guid.NewGuid(),
-                    DisplayName = string.Format("{0} - Jim", id)
-                };
+                //return new User
+                //{
+                //    Id = Guid.NewGuid(),
+                //    DisplayName = string.Format("{0} - Jim", id)
+                //};
 
-                //return _userLogic.
+                return _userLogic.GetUser(id);
 
             }
             catch (Exception ex)

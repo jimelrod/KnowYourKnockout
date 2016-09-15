@@ -9,28 +9,28 @@ namespace KnowYourKnockout.Business
 {
     public class TagLogic
     {
-        private KnowYourKnockoutContext _context;
+        //private KnowYourKnockoutContext _context;
         
-        public TagLogic(KnowYourKnockoutContext context)
-        {
-            _context = context;
-        }
+        //public TagLogic(KnowYourKnockoutContext context)
+        //{
+        //    _context = context;
+        //}
 
-        public List<Tag> GetTags(out Exception exception)
-        {
-            exception = null;
-            var tags = new List<Tag>();
+        //public List<Tag> GetTags(out Exception exception)
+        //{
+        //    exception = null;
+        //    var tags = new List<Tag>();
 
-            try
-            {                
-                tags = _context.Tag.ToList();
-            }
-            catch (Exception ex)
-            {
-                exception = ex;
-            }
+        //    try
+        //    {                
+        //        tags = _context.Tag.ToList();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        exception = ex;
+        //    }
 
-            return tags;
-        }
+        //    return tags;
+        //}
     }
 }

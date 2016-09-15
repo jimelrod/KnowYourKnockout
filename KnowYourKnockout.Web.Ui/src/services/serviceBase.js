@@ -4,11 +4,13 @@ import 'fetch';
 
 @inject(HttpClient)
 export class ServiceBase {
+    baseUrl = 'http://localhost:4753/api/';
+    
     constructor(http) {
         http.configure(config => {
             config
               .useStandardConfiguration()
-              .withBaseUrl('http://localhost:4753/api/');
+              .withBaseUrl(this.baseUrl);
         });
 
         this.http = http;

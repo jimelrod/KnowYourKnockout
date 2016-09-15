@@ -1,20 +1,16 @@
-﻿import {inject} from 'aurelia-framework';
-import {ServiceBase} from './serviceBase';
+﻿import {ServiceBase} from './serviceBase';
 
-@inject(ServiceBase)
-export class UserService {
-    constructor(svc) {
-        this.svc = svc;
-    }
+export class UserService extends ServiceBase {
+    endpointBase = 'Users';
 
     getUser(id) {        
-        return this.svc.get('values/' + id);
+        return super.get('values/' + id);
     }
 
     // REMOVE THIS FOR PRODUCTION
     getUsers() {
         console.warn("REMOVE THIS METHOD!!! UserService.getUsers()");
 
-        return this.svc.get('Users');
+        return super.get(this.endpointBase);
     }
 }

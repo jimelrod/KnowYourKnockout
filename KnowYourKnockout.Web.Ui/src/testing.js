@@ -3,7 +3,7 @@ import {UserService} from './services/userService.js';
 
 @inject(UserService)
 export class Testing {
-    constructor(userService) {
+    constructor(userService, testService) {
         this.userService = userService;
     }
 

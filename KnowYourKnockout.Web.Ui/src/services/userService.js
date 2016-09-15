@@ -8,7 +8,13 @@ export class UserService {
     }
 
     getUser(id) {        
-        return this.svc.get('values/' + id)
-            .then(user => console.log(user));
+        return this.svc.get('values/' + id);
+    }
+
+    // REMOVE THIS FOR PRODUCTION
+    getUsers() {
+        console.warn("REMOVE THIS METHOD!!! UserService.getUsers()");
+
+        return this.svc.get('Users');
     }
 }

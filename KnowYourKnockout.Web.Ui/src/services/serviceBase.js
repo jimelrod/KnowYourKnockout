@@ -51,14 +51,14 @@ export class ServiceBase {
         });
     }
 
-    put() {
+    put(endpoint, body) {
         return this.http.fetch(endpoint, {
             method: 'put',
             body: json(body)
         }).then(response => response.json());
     }
 
-    remove() {
+    remove(endpoint, body) {
         return this.http.fetch(endpoint, {
             method: 'delete',
             body: json(body)

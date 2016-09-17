@@ -7,6 +7,11 @@ namespace KnowYourKnockout.Data.Models
 {
     public class Question
     {
+        public Question()
+        {
+            AskedOn = DateTime.Now;
+        }
+
         [Key]
         public Guid Id { get; set; }
         public Guid AskerId { get; set; }

@@ -1,10 +1,9 @@
 ﻿using KnowYourKnockout.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
 
 namespace KnowYourKnockout.Data.Repositories
 {

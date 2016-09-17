@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 
 namespace KnowYourKnockout.Data.Repositories
 {
@@ -32,27 +33,30 @@ namespace KnowYourKnockout.Data.Repositories
 
         public User Get(Guid id)
         {
-            throw new NotImplementedException();
+            return _context.User.Single(u => u.Id == id);
         }
 
         public List<User> Get(Expression<Func<User, bool>> expression)
         {
-            throw new NotImplementedException();
+            return _context.User.Where(expression).ToList();
         }
 
-        public bool HardDelete(User entity)
+        public bool HardDelete(User user)
         {
-            throw new NotImplementedException();
+            _context.User.Remove(user);
+            return _context.SaveChanges() == 1;
         }
 
-        public bool SoftDelete(User entity)
+        public bool SoftDelete(User user)
         {
-            throw new NotImplementedException();
+            user.IsActive = false;
+            return Update(user);
         }
 
-        public bool Update(User entity)
+        public bool Update(User user)
         {
-            throw new NotImplementedException();
+            _context.Entry(user).State = EntityState.Modified;
+            return _context.SaveChanges() == 1;
         }
     }
 }

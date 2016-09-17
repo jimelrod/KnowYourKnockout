@@ -8,6 +8,7 @@ namespace KnowYourKnockout.Data
         public KnowYourKnockoutContext(DbContextOptions<KnowYourKnockoutContext> options)
             : base(options)
         {
+            
         }
 
         public DbSet<User> User { get; set; }

@@ -54,5 +54,20 @@ namespace KnowYourKnockout.Business
                 return null;
             }
         }
+
+        public bool DeleteUser(User user, bool isHardDelete = false)
+        {
+            try
+            {
+                return isHardDelete ? 
+                    _dataApi.UserRepository.HardDelete(user) :
+                    _dataApi.UserRepository.SoftDelete(user);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+                return false;
+            }
+        }
     }
 }

@@ -7,6 +7,11 @@ namespace KnowYourKnockout.Data.Models
 {
     public class User
     {
+        public User()
+        {
+            JoinedOn = DateTime.Now;
+        }
+
         [Key]
         public Guid Id { get; set; }
         public string FirebaseId { get; set; }

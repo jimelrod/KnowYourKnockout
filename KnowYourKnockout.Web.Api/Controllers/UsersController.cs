@@ -2,6 +2,7 @@
 using KnowYourKnockout.Data;
 using KnowYourKnockout.Data.Models;
 using KnowYourKnockout.Utility;
+using KnowYourKnockout.Web.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
 using System;
@@ -32,50 +33,68 @@ namespace KnowYourKnockout.Web.Api.Controllers
         {
             try
             {
-                return Json(_userLogic.GetUsers());
+                var users = _userLogic.GetUsers();
+                var response = new KykSuccessResponse<IEnumerable<User>>(users);
+
+                return Json(response);
             }
             catch (Exception ex)
             {
-                _log.Insert(ex.Message, CLASS_NAME, "Get()");
-                return NoContent();
+                // TODO: FIGURE OUT WHAT THIS SHOULD ACTUALLY BE!
+                return BadRequest(new KykErrorResponse(ex));
             }
         }
 
         [HttpGet("{id}")]
-        public User Get(Guid id)
+        public IActionResult Get(Guid id)
         {
             try
             {
-                //return new User
-                //{
-                //    Id = Guid.NewGuid(),
-                //    DisplayName = string.Format("{0} - Jim", id)
-                //};
+                var user = _userLogic.GetUser(id);
+                var response = new KykSuccessResponse<User>(user);
 
-                return _userLogic.GetUser(id);
-
+                return Json(response);
             }
             catch (Exception ex)
             {
-                Console.Write(ex.Message);
-                return null;
+                return NotFound(new KykErrorResponse(ex));
             }
         }
 
         [HttpPost]
-        public User Post(User user)
+        public IActionResult Create(User user)
         {
             try
             {
                 user = _userLogic.AddUser(user);
+                var response = new KykSuccessResponse<User>(user);
+
+                return CreatedAtRoute(user.Id, response);
             }
             catch(Exception ex)
             {
-                Console.Write(ex.Message);
-                user = null;
+                return StatusCode(422, new KykErrorResponse(ex));
             }
+        }
 
-            return user;
+        [HttpPut("{id}")]
+        public IActionResult Update(Guid id, User user)
+        {
+            try
+            {
+                if (_userLogic.UpdateUserProfile(user))
+                {
+                    return NoContent();
+                }
+                else
+                {
+                    return NotFound();
+                }                
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(422, new KykErrorResponse(ex));
+            }
         }
     }
 }

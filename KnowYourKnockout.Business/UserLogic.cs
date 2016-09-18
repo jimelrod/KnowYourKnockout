@@ -69,5 +69,18 @@ namespace KnowYourKnockout.Business
                 return false;
             }
         }
+
+        public bool UpdateUserProfile(User user)
+        {
+            try
+            {
+                return _dataApi.UserRepository.Update(user);
+            }
+            catch(Exception ex)
+            {
+                Console.Write(ex.Message);
+                return false;
+            }
+        }
     }
 }

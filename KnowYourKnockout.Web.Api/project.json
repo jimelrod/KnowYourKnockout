@@ -19,7 +19,8 @@
     "Microsoft.NETCore.App": {
       "version": "1.0.0",
       "type": "platform"
-    }
+    },
+    "NLog.Extensions.Logging": "1.0.0-*"
   },
 
   "tools": {
@@ -53,7 +54,8 @@
       "Views",
       "Areas/**/Views",
       "appsettings.json",
-      "web.config"
+      "web.config",
+      "nlog.config"
     ]
   },
 

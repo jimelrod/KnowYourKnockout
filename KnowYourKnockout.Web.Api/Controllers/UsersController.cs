@@ -3,6 +3,7 @@ using KnowYourKnockout.Data;
 using KnowYourKnockout.Data.Models;
 using KnowYourKnockout.Utility;
 using Microsoft.AspNetCore.Mvc;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace KnowYourKnockout.Web.Api.Controllers
     public class UsersController : Controller
     {
         const string CLASS_NAME = "KnowYourKnockout.Web.Api.Controllers.UsersController";
+
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         private UserLogic _userLogic;
         private Log _log;

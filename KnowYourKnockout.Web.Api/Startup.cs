@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
 using System;
 
 namespace KnowYourKnockout.Web.Api
@@ -52,6 +53,9 @@ namespace KnowYourKnockout.Web.Api
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            loggerFactory.AddNLog();
+            env.ConfigureNLog("nlog.config");
 
             app.UseCors(builder => builder.WithOrigins("*"));// This WILL CHANGE!!!!! You know... security and whatnot...
             app.UseMvc();

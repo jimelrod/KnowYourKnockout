@@ -238,3 +238,7 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+# Sublime project files
+*.sublime-project
+*.sublime-workspace

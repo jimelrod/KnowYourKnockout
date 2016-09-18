@@ -4,6 +4,7 @@ import 'fetch';
 
 @inject(HttpClient)
 export class ServiceBase {
+    // TODO: Add configuration for environments...
     baseUrl = 'http://localhost:4753/api/';
     
     constructor(http) {

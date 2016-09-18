@@ -1,7 +1,7 @@
 ﻿import {ServiceBase} from './serviceBase';
 
 export class UserService extends ServiceBase {
-    endpointBase = 'Users';
+    controller = 'Users';
 
     getUser(id) {        
         return super.get('values/' + id);
@@ -11,6 +11,6 @@ export class UserService extends ServiceBase {
     getUsers() {
         console.warn("REMOVE THIS METHOD!!! UserService.getUsers()");
 
-        return super.get(this.endpointBase);
+        return super.get(this.controller);
     }
 }

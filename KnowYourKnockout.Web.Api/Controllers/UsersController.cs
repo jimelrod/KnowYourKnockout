@@ -96,5 +96,32 @@ namespace KnowYourKnockout.Web.Api.Controllers
                 return StatusCode(422, new KykErrorResponse(ex));
             }
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid id)
+        {
+            try
+            {
+                var user = _userLogic.GetUser(id);
+
+                if (user == null)
+                {
+                    return NotFound();
+                }
+
+                if (_userLogic.DeleteUser(user))
+                {
+                    return NoContent();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(422, new KykErrorResponse(ex));
+            }
+        }
     }
 }

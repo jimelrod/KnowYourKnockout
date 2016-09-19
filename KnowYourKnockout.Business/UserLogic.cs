@@ -1,5 +1,6 @@
 ﻿using KnowYourKnockout.Data;
 using KnowYourKnockout.Data.Models;
+using KnowYourKnockout.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,12 @@ namespace KnowYourKnockout.Business
     public class UserLogic// : LogicBase
     {
         private IKnowYourKnockoutDataApi _dataApi;
+        private Log _log;
 
-        public UserLogic(IKnowYourKnockoutDataApi dataApi)
+        public UserLogic(IKnowYourKnockoutDataApi dataApi, Log log)
         {
             _dataApi = dataApi;
+            _log = log;
         }
 
         public List<User> GetUsers()
@@ -24,7 +27,7 @@ namespace KnowYourKnockout.Business
             }
             catch(Exception ex)
             {
-                Console.Write(ex.Message);
+                _log.Insert(ex, GetType().ToString(), "GetUsers()");
                 return null;
             }
         }
@@ -37,7 +40,7 @@ namespace KnowYourKnockout.Business
             }
             catch (Exception ex)
             {
-                Console.Write(ex.Message);
+                _log.Insert(ex, GetType().ToString(), "GetUser(Guid id)");
                 return null;
             }
         }
@@ -50,7 +53,7 @@ namespace KnowYourKnockout.Business
             }
             catch(Exception ex)
             {
-                Console.Write(ex.Message);
+                _log.Insert(ex, GetType().ToString(), "AddUser(User user)");
                 return null;
             }
         }
@@ -65,7 +68,7 @@ namespace KnowYourKnockout.Business
             }
             catch (Exception ex)
             {
-                Console.Write(ex.Message);
+                _log.Insert(ex, GetType().ToString(), "DeleteUser(User user, bool isHardDelete = false)");
                 return false;
             }
         }
@@ -78,7 +81,7 @@ namespace KnowYourKnockout.Business
             }
             catch(Exception ex)
             {
-                Console.Write(ex.Message);
+                _log.Insert(ex, GetType().ToString(), "UpdateUserProfile(User user)");
                 return false;
             }
         }

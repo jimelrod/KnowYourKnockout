@@ -1,6 +1,9 @@
 ﻿using KnowYourKnockout.Data;
 using KnowYourKnockout.Data.Models;
 using System;
+using System.Diagnostics;
+using System.IO;
+using System.Text;
 
 namespace KnowYourKnockout.Utility
 {
@@ -13,18 +16,26 @@ namespace KnowYourKnockout.Utility
             _context = context;
         }
 
-        public void Insert(string message)
+        public void Insert(Exception ex)
         {
-            Insert(message, string.Empty);
+            Insert(ex, string.Empty);
         }
 
-        public void Insert(string message, string className)
+        public void Insert(Exception ex, string className)
         {
-            Insert(message, className, string.Empty);
+            Insert(ex, className, string.Empty);
         }
 
-        public void Insert(string message, string className, string methodName)
+        public void Insert(Exception ex, string className, string methodName)
         {
+            var message = ex.Message;
+
+            while (ex.InnerException != null)
+            {
+                message += string.Format("\n\nInner Exception:\n{0}", ex.InnerException.Message);
+                ex = ex.InnerException;
+            }
+
             try
             {
                 _context.Error.Add(new Error
@@ -35,23 +46,59 @@ namespace KnowYourKnockout.Utility
                 });
 
                 _context.SaveChanges();
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine("Error logging error to database. Not a whole lot we can do now...");
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("Initial Error:");
-                Console.WriteLine(string.Format("Message - {0}", message));
 
-                if (!string.IsNullOrEmpty(className))
+                if (Debugger.IsAttached)
                 {
-                    Console.WriteLine(string.Format("Class - {0}", className));
+                    Debugger.Break();
                 }
-                if (!string.IsNullOrEmpty(methodName))
-                {
-                    Console.WriteLine(string.Format("Method - {0}", methodName));
-                }
+            }
+            catch(Exception exception)
+            {
+                var rawError = GenerateRawErrorString(exception, message, className, methodName);
+
+                WriteToErrorFile(rawError);
             }            
+        }
+
+        private string GenerateRawErrorString(Exception ex, string message, string className, string methodName)
+        {
+            var sb = new StringBuilder();
+
+            sb.AppendLine("Error logging error to database. Not a whole lot we can do now...");
+            sb.AppendLine(ex.Message);
+            sb.AppendLine("Initial Error:");
+            sb.AppendLine(string.Format("Message - {0}", message));
+
+            if (!string.IsNullOrEmpty(className))
+            {
+                sb.AppendLine(string.Format("Class - {0}", className));
+            }
+            if (!string.IsNullOrEmpty(methodName))
+            {
+                sb.AppendLine(string.Format("Method - {0}", methodName));
+            }
+
+            sb.AppendLine("\n==========================================");
+
+            return sb.ToString();
+        }
+
+        private void WriteToErrorFile(string s)
+        {
+            var dateString = DateTime.Now.ToString("yyyyMMdd-HHmmss-ffff");
+            var fileName = string.Format("c:\\projects\\logs\\kyk\\{0}.txt", dateString);
+
+            try
+            {
+                File.WriteAllText(fileName, s);
+            }
+            catch (Exception ex)
+            {
+                if (Debugger.IsAttached)
+                {
+                    Debugger.Break();
+                }
+            }
         }
     }
 }

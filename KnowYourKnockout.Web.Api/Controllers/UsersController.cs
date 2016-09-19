@@ -115,7 +115,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
                 }
                 else
                 {
-                    return NotFound();
+                    throw new Exception("Error deleting user");
                 }
             }
             catch (Exception ex)

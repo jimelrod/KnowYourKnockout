@@ -17,9 +17,12 @@ namespace KnowYourKnockout.Web.Api.Controllers
     {
         const string CLASS_NAME = "KnowYourKnockout.Web.Api.Controllers.UsersController";
 
+        // TODO: Actually implement this...
         private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         private UserLogic _userLogic;
+
+        // TODO: Get rid of this...
         private Log _log;
 
         public UsersController(UserLogic userLogic, Log log)
@@ -50,10 +53,20 @@ namespace KnowYourKnockout.Web.Api.Controllers
         {
             try
             {
-                var user = _userLogic.GetUser(id);
-                var response = new KykSuccessResponse<User>(user);
+                if (id == Guid.Empty)
+                {
+                    return StatusCode(422, new KykErrorResponse(new Exception("Invalid Id format.")));
+                }
 
-                return Json(response);
+                var user = _userLogic.GetUser(id);
+
+                if (user == null)
+                {
+                    // TODO: Make a standard error class...
+                    return NotFound(new Exception(string.Format("User not found with id: {0}", id)));
+                }
+
+                return Json(new KykSuccessResponse<User>(user));
             }
             catch (Exception ex)
             {

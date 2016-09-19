@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Data.SqlClient;
+using KnowYourKnockout.Data.Exceptions;
 
 namespace KnowYourKnockout.Data.Repositories
 {
@@ -27,12 +29,32 @@ namespace KnowYourKnockout.Data.Repositories
 
         public List<User> Get()
         {
-            return _context.User.ToList();
+            try
+            {
+                return _context.User.ToList();
+            }
+            catch (SqlException ex)
+            {
+                throw new KykDataLayerException("Database error while querying User table", ex);
+            }
         }
 
         public User Get(Guid id)
         {
-            return _context.User.Single(u => u.Id == id);
+            try
+            {
+                var user = _context.User.Single(u => u.Id == id);
+                return user;
+            }
+            catch(InvalidOperationException)
+            {
+                // No records
+                return null;
+            }
+            catch(SqlException ex)
+            {
+                throw new KykDataLayerException("Database error while querying User table", ex);
+            }
         }
 
         public List<User> Get(Expression<Func<User, bool>> expression)

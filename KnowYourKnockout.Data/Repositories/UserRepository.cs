@@ -33,9 +33,10 @@ namespace KnowYourKnockout.Data.Repositories
             {
                 return _context.User.ToList();
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                throw new KykDataLayerException("Database error while querying User table", ex);
+                // Log with high priority
+                throw ex;
             }
         }
 
@@ -46,38 +47,71 @@ namespace KnowYourKnockout.Data.Repositories
                 var user = _context.User.Single(u => u.Id == id);
                 return user;
             }
-            catch(InvalidOperationException)
+            catch (InvalidOperationException)
             {
                 // No records
                 return null;
             }
-            catch(SqlException ex)
+            catch (Exception ex)
             {
-                throw new KykDataLayerException("Database error while querying User table", ex);
+                // Log with high priority
+                throw ex;
             }
         }
 
         public List<User> Get(Expression<Func<User, bool>> expression)
         {
-            return _context.User.Where(expression).ToList();
+            try
+            {
+                return _context.User.Where(expression).ToList();
+            }
+            catch (Exception ex)
+            {
+                // Log with high priority
+                throw ex;
+            }
         }
 
         public bool HardDelete(User user)
         {
-            _context.User.Remove(user);
-            return _context.SaveChanges() == 1;
+            try
+            {
+                _context.User.Remove(user);
+                return _context.SaveChanges() == 1;
+            }
+            catch (Exception ex)
+            {
+                // Log with high priority
+                throw ex;
+            }
         }
 
         public bool SoftDelete(User user)
         {
-            user.IsActive = false;
-            return Update(user);
+            try
+            {
+                user.IsActive = false;
+                return Update(user);
+            }
+            catch (Exception ex)
+            {
+                // Log with high priority
+                throw ex;
+            }
         }
 
         public bool Update(User user)
         {
-            _context.Entry(user).State = EntityState.Modified;
-            return _context.SaveChanges() == 1;
+            try
+            {
+                _context.Entry(user).State = EntityState.Modified;
+                return _context.SaveChanges() == 1;
+            }
+            catch (Exception ex)
+            {
+                // Log with high priority
+                throw ex;
+            }
         }
     }
 }

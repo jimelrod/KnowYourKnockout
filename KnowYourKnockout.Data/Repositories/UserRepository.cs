@@ -21,10 +21,18 @@ namespace KnowYourKnockout.Data.Repositories
 
         public User Add(User entity)
         {
-            _context.User.Add(entity);
-            _context.SaveChanges();
+            try
+            {
+                _context.User.Add(entity);
+                _context.SaveChanges();
 
-            return entity;
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                // Log with high priority
+                throw ex;
+            }
         }
 
         public List<User> Get()

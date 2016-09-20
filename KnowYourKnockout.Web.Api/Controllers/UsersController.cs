@@ -44,7 +44,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
             catch (Exception ex)
             {
                 // TODO: FIGURE OUT WHAT THIS SHOULD ACTUALLY BE!
-                return BadRequest(new KykErrorResponse(ex));
+                return StatusCode(500, new KykErrorResponse(ex));
             }
         }
 
@@ -70,7 +70,8 @@ namespace KnowYourKnockout.Web.Api.Controllers
             }
             catch (Exception ex)
             {
-                return NotFound(new KykErrorResponse(ex));
+                // TODO: FIGURE OUT WHAT THIS SHOULD ACTUALLY BE!
+                return StatusCode(500, new KykErrorResponse(ex));
             }
         }
 
@@ -79,6 +80,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
         {
             try
             {
+                // TODO: add validation for required fields
                 user = _userLogic.AddUser(user);
                 var response = new KykSuccessResponse<User>(user);
 
@@ -86,7 +88,8 @@ namespace KnowYourKnockout.Web.Api.Controllers
             }
             catch(Exception ex)
             {
-                return StatusCode(422, new KykErrorResponse(ex));
+                // TODO: FIGURE OUT WHAT THIS SHOULD ACTUALLY BE!
+                return StatusCode(500, new KykErrorResponse(ex));
             }
         }
 
@@ -95,18 +98,28 @@ namespace KnowYourKnockout.Web.Api.Controllers
         {
             try
             {
+                if (id != user.Id)
+                {
+                    return StatusCode(422, new KykErrorResponse(new Exception("Ids do not match")));
+                }
+
+                if (_userLogic.GetUser(id) == null)
+                {
+                    return NotFound();
+                }
+
                 if (_userLogic.UpdateUserProfile(user))
                 {
                     return NoContent();
                 }
                 else
                 {
-                    return NotFound();
+                    throw new Exception("Unknown error...");
                 }                
             }
             catch (Exception ex)
             {
-                return StatusCode(422, new KykErrorResponse(ex));
+                return StatusCode(500, new KykErrorResponse(ex));
             }
         }
 
@@ -133,7 +146,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(422, new KykErrorResponse(ex));
+                return StatusCode(500, new KykErrorResponse(ex));
             }
         }
     }

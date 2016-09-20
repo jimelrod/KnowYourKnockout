@@ -28,7 +28,7 @@ namespace KnowYourKnockout.Business
             catch(Exception ex)
             {
                 _log.Insert(ex, GetType().ToString(), "GetUsers()");
-                return null;
+                throw ex;
             }
         }
 
@@ -41,7 +41,7 @@ namespace KnowYourKnockout.Business
             catch (Exception ex)
             {
                 _log.Insert(ex, GetType().ToString(), "GetUser(Guid id)");
-                return null;
+                throw ex;
             }
         }
 
@@ -54,7 +54,7 @@ namespace KnowYourKnockout.Business
             catch(Exception ex)
             {
                 _log.Insert(ex, GetType().ToString(), "AddUser(User user)");
-                return null;
+                throw ex;
             }
         }
 
@@ -69,7 +69,7 @@ namespace KnowYourKnockout.Business
             catch (Exception ex)
             {
                 _log.Insert(ex, GetType().ToString(), "DeleteUser(User user, bool isHardDelete = false)");
-                return false;
+                throw ex;
             }
         }
 
@@ -82,7 +82,7 @@ namespace KnowYourKnockout.Business
             catch(Exception ex)
             {
                 _log.Insert(ex, GetType().ToString(), "UpdateUserProfile(User user)");
-                return false;
+                throw ex;
             }
         }
     }

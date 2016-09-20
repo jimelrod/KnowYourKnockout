@@ -44,7 +44,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
             catch (Exception ex)
             {
                 // TODO: FIGURE OUT WHAT THIS SHOULD ACTUALLY BE!
-                return StatusCode(500, new KykErrorResponse(ex));
+                return StatusCode(500, new KykExceptionResponse(ex));
             }
         }
 
@@ -55,7 +55,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
             {
                 if (id == Guid.Empty)
                 {
-                    return StatusCode(422, new KykErrorResponse(new Exception("Invalid Id format.")));
+                    return StatusCode(422, new KykExceptionResponse(new Exception("Invalid Id format.")));
                 }
 
                 var user = _userLogic.GetUser(id);
@@ -71,16 +71,34 @@ namespace KnowYourKnockout.Web.Api.Controllers
             catch (Exception ex)
             {
                 // TODO: FIGURE OUT WHAT THIS SHOULD ACTUALLY BE!
-                return StatusCode(500, new KykErrorResponse(ex));
+                return StatusCode(500, new KykExceptionResponse(ex));
             }
         }
 
         [HttpPost]
-        public IActionResult Create(User user)
+        public IActionResult Create([FromBody]User user)
         {
+            var errors = new List<KykApiError>();
+
+            // Validation - could be cleaned up...
+            if (string.IsNullOrWhiteSpace(user.DisplayName))
+            {
+                errors.Add(new KykApiError("User", "displayName", KykApiErrorCode.NullField));
+            }
+
+            if (string.IsNullOrWhiteSpace(user.EmailAddress))
+            {
+                errors.Add(new KykApiError("User", "emailAddress", KykApiErrorCode.NullField));
+            }
+
+            if (errors.Count > 0)
+            {
+                return StatusCode(422, new KykErrorResponse(errors));
+            }
+            // END Validation
+
             try
             {
-                // TODO: add validation for required fields
                 user = _userLogic.AddUser(user);
                 var response = new KykSuccessResponse<User>(user);
 
@@ -89,18 +107,18 @@ namespace KnowYourKnockout.Web.Api.Controllers
             catch(Exception ex)
             {
                 // TODO: FIGURE OUT WHAT THIS SHOULD ACTUALLY BE!
-                return StatusCode(500, new KykErrorResponse(ex));
+                return StatusCode(500, new KykExceptionResponse(ex));
             }
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(Guid id, User user)
+        public IActionResult Update(Guid id, [FromBody]User user)
         {
             try
             {
                 if (id != user.Id)
                 {
-                    return StatusCode(422, new KykErrorResponse(new Exception("Ids do not match")));
+                    return StatusCode(422, new KykExceptionResponse(new Exception("Ids do not match")));
                 }
 
                 if (_userLogic.GetUser(id) == null)
@@ -119,7 +137,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new KykErrorResponse(ex));
+                return StatusCode(500, new KykExceptionResponse(ex));
             }
         }
 
@@ -146,7 +164,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new KykErrorResponse(ex));
+                return StatusCode(500, new KykExceptionResponse(ex));
             }
         }
     }

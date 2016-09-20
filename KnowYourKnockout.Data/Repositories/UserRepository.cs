@@ -30,6 +30,9 @@ namespace KnowYourKnockout.Data.Repositories
             }
             catch (Exception ex)
             {
+                // IMPORTANT!!!!
+                // HANDLE INNER EXCEPTION WITH 2627  code
+
                 // Log with high priority
                 throw ex;
             }

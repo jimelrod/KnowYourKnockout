@@ -1,17 +1,17 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace KnowYourKnockout.Web.Api.Models
 {
-    public class KykErrorResponse : KykResponse<Exception>
+    public class KykErrorResponse : KykResponse<List<KykApiError>>
     {
-        public KykErrorResponse(Exception ex)
+        public KykErrorResponse(List<KykApiError> errors)
         {
-            Body = ex;
+            Body = errors;
         }
 
-        public override KykResponseStatus StatusCode
+        public override KykResponseCode StatusCode
         {
-            get { return KykResponseStatus.Error; }
+            get { return KykResponseCode.ClientError; }
         }
     }
 }

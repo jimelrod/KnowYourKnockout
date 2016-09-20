@@ -7,9 +7,9 @@
             Body = body;
         }
 
-        public override KykResponseStatus StatusCode
+        public override KykResponseCode StatusCode
         {
-            get { return KykResponseStatus.Success; }
+            get { return KykResponseCode.Success; }
         }
     }
 }

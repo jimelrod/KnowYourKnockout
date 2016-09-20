@@ -2,7 +2,7 @@
 {
     public abstract class KykResponse<T> : IKykResponse<T> where T : class
     {
-        public virtual KykResponseStatus StatusCode { get; }
+        public virtual KykResponseCode StatusCode { get; }
         public string Status { get { return StatusCode.ToString(); } }
         public T Body { get; set; }
     }

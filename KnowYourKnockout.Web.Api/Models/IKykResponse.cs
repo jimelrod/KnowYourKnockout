@@ -2,7 +2,7 @@
 {
     public interface IKykResponse<T> where T : class
     {
-        KykResponseStatus StatusCode { get; }
+        KykResponseCode StatusCode { get; }
         string Status { get; }
         T Body { get; set; }
     }

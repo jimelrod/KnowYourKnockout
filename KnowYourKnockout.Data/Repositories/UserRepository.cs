@@ -28,11 +28,26 @@ namespace KnowYourKnockout.Data.Repositories
 
                 return entity;
             }
+            catch(DbUpdateException ex)
+            {
+                if (ex.InnerException is SqlException)
+                {
+                    var sEx = (SqlException)ex.InnerException;
+
+                    switch (sEx.Number)
+                    {
+                        // Violates UNIQUE constraint
+                        // Depending on need, messages may move to a dictionary[code]
+                        case 2627:
+                            throw new KykDataLayerException(ExceptionType.Client, "Record in Users already exists with secified value. See Inner Exception for details.", sEx);
+
+                    }
+                }
+
+                throw ex;
+            }
             catch (Exception ex)
             {
-                // IMPORTANT!!!!
-                // HANDLE INNER EXCEPTION WITH 2627  code
-
                 // Log with high priority
                 throw ex;
             }

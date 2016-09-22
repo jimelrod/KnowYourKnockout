@@ -15,7 +15,10 @@ namespace KnowYourKnockout.Data.Models
         [Key]
         public Guid Id { get; set; }
         public string FirebaseId { get; set; }
+        [Required]
+        [EmailAddress]
         public string EmailAddress { get; set; }
+        [Required]
         public string DisplayName { get; set; }
         public string PhotoUrl { get; set; }
         public bool IsActive { get; set; }

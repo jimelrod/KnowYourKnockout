@@ -19,6 +19,8 @@ namespace KnowYourKnockout.Business
             _log = log;
         }
 
+        #region Basic CRUD Ops
+
         public List<User> GetUsers()
         {
             try
@@ -84,6 +86,14 @@ namespace KnowYourKnockout.Business
                 _log.Insert(ex, GetType().ToString(), "UpdateUserProfile(User user)");
                 throw ex;
             }
+        }
+
+        #endregion
+
+        // MAY NOT NEED!!!
+        public bool UserExists(string emailAddress)
+        {
+            return _dataApi.UserRepository.Get(u => u.EmailAddress == emailAddress).Any();
         }
     }
 }

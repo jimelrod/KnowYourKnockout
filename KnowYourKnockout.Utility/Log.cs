@@ -46,11 +46,6 @@ namespace KnowYourKnockout.Utility
                 });
 
                 _context.SaveChanges();
-
-                if (Debugger.IsAttached)
-                {
-                    Debugger.Break();
-                }
             }
             catch(Exception exception)
             {

@@ -2,6 +2,7 @@
 {
     public enum KykApiErrorCode
     {
-        NullField = 4001
+        InvalidValueForField = 4001,
+        UniqueValueForFieldAlreadyExists = 4002
     }
 }

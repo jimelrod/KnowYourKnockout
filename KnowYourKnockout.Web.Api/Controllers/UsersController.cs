@@ -1,5 +1,6 @@
 ﻿using KnowYourKnockout.Business;
 using KnowYourKnockout.Data;
+using KnowYourKnockout.Data.Exceptions;
 using KnowYourKnockout.Data.Models;
 using KnowYourKnockout.Utility;
 using KnowYourKnockout.Web.Api.Models;
@@ -78,17 +79,25 @@ namespace KnowYourKnockout.Web.Api.Controllers
         [HttpPost]
         public IActionResult Create([FromBody]User user)
         {
+            // Validation
             var errors = new List<KykApiError>();
 
-            // Validation - could be cleaned up...
-            if (string.IsNullOrWhiteSpace(user.DisplayName))
+            if (!ModelState.IsValid)
             {
-                errors.Add(new KykApiError("User", "displayName", KykApiErrorCode.NullField));
+                errors.AddRange(GenerateErrorsForInvalidModelState());
             }
 
-            if (string.IsNullOrWhiteSpace(user.EmailAddress))
+            if (_userLogic.UserExists(user.EmailAddress))
             {
-                errors.Add(new KykApiError("User", "emailAddress", KykApiErrorCode.NullField));
+                errors.Add(new KykApiError
+                {
+                    Resource = "Users",
+                    Field = "emailAddress",
+                    ErrorCode = KykApiErrorCode.UniqueValueForFieldAlreadyExists,
+                    Message = string.Format(
+                        "An account already exists for this email address: {0}", 
+                        user.EmailAddress)
+                });
             }
 
             if (errors.Count > 0)
@@ -104,6 +113,10 @@ namespace KnowYourKnockout.Web.Api.Controllers
 
                 return CreatedAtRoute(user.Id, response);
             }
+            //catch(KykDataLayerException ex)
+            //{
+
+            //}
             catch(Exception ex)
             {
                 // TODO: FIGURE OUT WHAT THIS SHOULD ACTUALLY BE!
@@ -166,6 +179,23 @@ namespace KnowYourKnockout.Web.Api.Controllers
             {
                 return StatusCode(500, new KykExceptionResponse(ex));
             }
+        }
+
+        private List<KykApiError> GenerateErrorsForInvalidModelState()
+        {
+            var errors = new List<KykApiError>();
+
+            foreach (var error in ModelState)
+            {
+                errors.Add(new KykApiError("Users",ConvertToCamelCase(error.Key), KykApiErrorCode.InvalidValueForField, error.Value.Errors[0].ErrorMessage));
+            }
+
+            return errors;
+        }
+
+        private static string ConvertToCamelCase(string s)
+        {
+            return s.Substring(0, 1).ToLower() + s.Substring(1);
         }
     }
 }

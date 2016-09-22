@@ -4,11 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using KnowYourKnockout.Data.Models;
+using KnowYourKnockout.Web.Api.Models;
 
 namespace KnowYourKnockout.Web.Api.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class TestController : Controller
     {
         // GET api/values
         [HttpGet]
@@ -41,7 +42,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]MyUser user)
         {
         }
 

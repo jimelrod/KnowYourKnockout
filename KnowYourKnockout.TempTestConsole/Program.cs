@@ -24,7 +24,7 @@ namespace KnowYourKnockout.TempTestConsole
             IKnowYourKnockoutContext context = new KnowYourKnockoutContext(builder.Options);
             IKnowYourKnockoutRepository<User, Guid> repo = new UserRepository(context);
             IKnowYourKnockoutDataApi api = new KnowYourKnockoutDataApi(repo);
-            _userLogic = new UserLogic(api);
+            _userLogic = new UserLogic(api, new Utility.Log((KnowYourKnockoutContext)context));
 
             Go();
             Go();
@@ -38,10 +38,7 @@ namespace KnowYourKnockout.TempTestConsole
         {
             Start();
             GetUsers();
-            var id = AddUser();
-            var user = GetUser(id);
-            var isSuccess = DeleteUser(user);
-            Console.WriteLine(isSuccess);
+            Console.WriteLine(DeleteUser(GetUser(AddUser())));
             End();
         }
 

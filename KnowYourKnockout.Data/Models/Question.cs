@@ -13,9 +13,9 @@ namespace KnowYourKnockout.Data.Models
         }
 
         [Key]
-        public Guid Id { get; set; }
-        public Guid AskerId { get; set; }
-        public Guid ResponderId { get; set; }
+        public int Id { get; set; }
+        public int AskerId { get; set; }
+        public int ResponderId { get; set; }
         public string QuestionText { get; set; }
         public string AnswerText { get; set; }
         public bool IsQuestionPublic { get; set; }

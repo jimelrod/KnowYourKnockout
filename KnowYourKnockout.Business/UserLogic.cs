@@ -34,7 +34,7 @@ namespace KnowYourKnockout.Business
             }
         }
 
-        public User GetUser(Guid id)
+        public User GetUser(int id)
         {
             try
             {

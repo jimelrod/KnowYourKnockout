@@ -18,12 +18,12 @@ namespace KnowYourKnockout.Web.Api.Controllers
             {
                 new User
                 {
-                    Id = Guid.NewGuid(),
+                    Id = 123,
                     DisplayName = string.Format("{0} - Jim", 642)
                 },
                 new User
                 {
-                    Id = Guid.NewGuid(),
+                    Id = 345,
                     DisplayName = string.Format("{0} - Jim", 235)
                 }
             });
@@ -34,7 +34,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
         {
             return Json(new User
             {
-                Id = Guid.NewGuid(),
+                Id = 456,
                 DisplayName = string.Format("{0} - Jim", id)
             });
         }

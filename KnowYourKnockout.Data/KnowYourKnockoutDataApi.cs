@@ -9,11 +9,11 @@ namespace KnowYourKnockout.Data
 {
     public class KnowYourKnockoutDataApi : IKnowYourKnockoutDataApi
     {
-        public KnowYourKnockoutDataApi(IKnowYourKnockoutRepository<User, Guid> userRepository)
+        public KnowYourKnockoutDataApi(IKnowYourKnockoutRepository<User, int> userRepository)
         {
             UserRepository = userRepository;
         }
 
-        public IKnowYourKnockoutRepository<User, Guid> UserRepository { get; private set; }
+        public IKnowYourKnockoutRepository<User, int> UserRepository { get; private set; }
     }
 }

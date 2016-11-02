@@ -10,8 +10,8 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-:r .\PostDeploy\TagSeedData.sql
-:r .\PostDeploy\UserSeedData.sql
-:r .\PostDeploy\FriendRequestSeedData.sql
-:r .\PostDeploy\QuestionSeedData.sql
-:r .\PostDeploy\QuestionTagSeedData.sql
+--:r .\PostDeploy\TagSeedData.sql
+--:r .\PostDeploy\UserSeedData.sql
+--:r .\PostDeploy\FriendRequestSeedData.sql
+--:r .\PostDeploy\QuestionSeedData.sql
+--:r .\PostDeploy\QuestionTagSeedData.sql

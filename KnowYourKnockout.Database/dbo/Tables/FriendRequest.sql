@@ -1,8 +1,8 @@
 ﻿CREATE TABLE [dbo].[FriendRequest]
 (
-	[Id] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
-    [RequesterId] UNIQUEIDENTIFIER NOT NULL, 
-    [RequesteeId] UNIQUEIDENTIFIER NOT NULL, 
+	[Id] INT IDENTITY(1,1) NOT NULL,
+    [RequesterId] INT NOT NULL, 
+    [RequesteeId] INT NOT NULL, 
     [IsAccepted] BIT NOT NULL DEFAULT 0, 
     [IsActive] BIT NOT NULL DEFAULT 1, 
     [SentOn] DATETIME NOT NULL DEFAULT GETDATE(), 

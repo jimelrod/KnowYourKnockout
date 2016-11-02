@@ -1,8 +1,8 @@
 ﻿CREATE TABLE [dbo].[Question]
 (
-	[Id] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
-    [AskerId] UNIQUEIDENTIFIER NOT NULL,
-    [ResponderId] UNIQUEIDENTIFIER NOT NULL,
+	[Id] INT IDENTITY(1,1) NOT NULL,
+    [AskerId] INT NOT NULL,
+    [ResponderId] INT NOT NULL,
     [QuestionText] NVARCHAR(MAX) NOT NULL, 
 	[AnswerText] NVARCHAR(MAX), 
     [IsQuestionPublic] BIT NOT NULL DEFAULT 0,

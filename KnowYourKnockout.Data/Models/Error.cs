@@ -9,7 +9,7 @@ namespace KnowYourKnockout.Data.Models
             DateOccured = DateTime.Now;
         }
 
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Message { get; set; }
         public string Class { get; set; }
         public string Method { get; set; }

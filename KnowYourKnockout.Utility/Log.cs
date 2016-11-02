@@ -91,6 +91,7 @@ namespace KnowYourKnockout.Utility
             {
                 if (Debugger.IsAttached)
                 {
+                    Debug.WriteLine(ex.Message);
                     Debugger.Break();
                 }
             }

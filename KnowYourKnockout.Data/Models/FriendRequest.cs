@@ -7,9 +7,9 @@ namespace KnowYourKnockout.Data.Models
     public class FriendRequest
     {
         [Key]
-        public Guid Id { get; set; }
-        public Guid RequesterId { get; set; }
-        public Guid RequesteeId { get; set; }
+        public int Id { get; set; }
+        public int RequesterId { get; set; }
+        public int RequesteeId { get; set; }
         public bool IsAccepted { get; set; }
         public bool IsActive { get; set; }
         public DateTime SentOn { get; set; }

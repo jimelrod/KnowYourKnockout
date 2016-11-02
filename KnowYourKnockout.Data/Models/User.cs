@@ -13,7 +13,7 @@ namespace KnowYourKnockout.Data.Models
         }
 
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string FirebaseId { get; set; }
         [Required]
         [EmailAddress]

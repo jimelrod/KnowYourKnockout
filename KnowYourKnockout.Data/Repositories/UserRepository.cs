@@ -10,7 +10,7 @@ using KnowYourKnockout.Data.Exceptions;
 namespace KnowYourKnockout.Data.Repositories
 {
     public class UserRepository
-        : IKnowYourKnockoutRepository<User, Guid>
+        : IKnowYourKnockoutRepository<User, int>
     {
         private IKnowYourKnockoutContext _context;
 
@@ -66,7 +66,7 @@ namespace KnowYourKnockout.Data.Repositories
             }
         }
 
-        public User Get(Guid id)
+        public User Get(int id)
         {
             try
             {

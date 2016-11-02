@@ -7,9 +7,9 @@ namespace KnowYourKnockout.Data.Models
     public class QuestionTag
     {
         [Key]
-        public Guid Id { get; set; }
-        public Guid QuestionId { get; set; }
-        public Guid TagId { get; set; }
+        public int Id { get; set; }
+        public int QuestionId { get; set; }
+        public int TagId { get; set; }
         
         [ForeignKey("TagId")]
         public virtual Tag Tag { get; set; }

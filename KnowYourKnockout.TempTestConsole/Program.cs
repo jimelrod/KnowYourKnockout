@@ -22,7 +22,7 @@ namespace KnowYourKnockout.TempTestConsole
             builder.UseSqlServer(CONN_STRING);
 
             IKnowYourKnockoutContext context = new KnowYourKnockoutContext(builder.Options);
-            IKnowYourKnockoutRepository<User, Guid> repo = new UserRepository(context);
+            IKnowYourKnockoutRepository<User, int> repo = new UserRepository(context);
             IKnowYourKnockoutDataApi api = new KnowYourKnockoutDataApi(repo);
             _userLogic = new UserLogic(api, new Utility.Log((KnowYourKnockoutContext)context));
 
@@ -54,7 +54,7 @@ namespace KnowYourKnockout.TempTestConsole
             return users;
         }
 
-        private static Guid AddUser()
+        private static int AddUser()
         {
             Console.WriteLine("AddUser");
             Start();
@@ -66,7 +66,7 @@ namespace KnowYourKnockout.TempTestConsole
             return user.Id;
         }
 
-        private static User GetUser(Guid id)
+        private static User GetUser(int id)
         {
             Console.WriteLine("GetUser");
             Start();

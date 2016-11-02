@@ -50,15 +50,10 @@ namespace KnowYourKnockout.Web.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
+        public IActionResult Get(int id)
         {
             try
             {
-                if (id == Guid.Empty)
-                {
-                    return StatusCode(422, new KykExceptionResponse(new Exception("Invalid Id format.")));
-                }
-
                 var user = _userLogic.GetUser(id);
 
                 if (user == null)
@@ -125,7 +120,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(Guid id, [FromBody]User user)
+        public IActionResult Update(int id, [FromBody]User user)
         {
             try
             {
@@ -155,7 +150,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
+        public IActionResult Delete(int id)
         {
             try
             {

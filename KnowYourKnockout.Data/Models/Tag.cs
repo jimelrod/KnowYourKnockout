@@ -8,7 +8,7 @@ namespace KnowYourKnockout.Data.Models
     public class Tag
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
 
         [InverseProperty("Tag")]

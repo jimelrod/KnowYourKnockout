@@ -6,6 +6,6 @@ namespace KnowYourKnockout.Data
 {
     public interface IKnowYourKnockoutDataApi
     {
-        IKnowYourKnockoutRepository<User, Guid> UserRepository { get; }
+        IKnowYourKnockoutRepository<User, int> UserRepository { get; }
     }
 }

@@ -60,7 +60,7 @@ namespace KnowYourKnockout.Web.Api
             services.AddTransient<Log, Log>();
             services.AddTransient<IKnowYourKnockoutContext, KnowYourKnockoutContext>();
             services.AddTransient<IKnowYourKnockoutDataApi, KnowYourKnockoutDataApi>();
-            services.AddTransient<IKnowYourKnockoutRepository<User, Guid>, UserRepository>();
+            services.AddTransient<IKnowYourKnockoutRepository<User, int>, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

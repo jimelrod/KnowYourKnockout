@@ -1,7 +1,7 @@
 ﻿CREATE FUNCTION [dbo].[FriendRequestCount]
 (
-	@user1 UNIQUEIDENTIFIER,
-	@user2 UNIQUEIDENTIFIER
+	@user1 INT,
+	@user2 INT
 )
 RETURNS INT
 AS

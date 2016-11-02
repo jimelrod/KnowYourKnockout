@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 namespace KnowYourKnockout.Data.Repositories
 {
     public class ErrorRepository
-        : IKnowYourKnockoutRepository<Error, Guid>
+        : IKnowYourKnockoutRepository<Error, int>
     {
         public Error Add(Error error)
         {
@@ -20,7 +20,7 @@ namespace KnowYourKnockout.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public Error Get(Guid id)
+        public Error Get(int id)
         {
             throw new NotImplementedException();
         }

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "EODG.FirebaseAuthTool": "1.0.0-*",
     "KnowYourKnockout.Business": "1.0.0-*",
     "KnowYourKnockout.Common": "1.0.0-*",
     "KnowYourKnockout.Utility": "1.0.0-*",
@@ -20,7 +21,8 @@
       "version": "1.0.0",
       "type": "platform"
     },
-    "NLog.Extensions.Logging": "1.0.0-*"
+    "NLog.Extensions.Logging": "1.0.0-*",
+"System.IdentityModel.Tokens.Jwt": "5.0.0"
   },
 
   "tools": {

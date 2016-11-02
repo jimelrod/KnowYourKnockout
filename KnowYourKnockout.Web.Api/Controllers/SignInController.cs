@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
+using Microsoft.IdentityModel.Tokens;
 
 namespace KnowYourKnockout.Web.Api.Controllers
 {
@@ -11,13 +13,16 @@ namespace KnowYourKnockout.Web.Api.Controllers
     public class SignInController : Controller
     {
         [HttpPost]
-        public IActionResult SignIn([FromBody]FirebaseUser user)
+        public IActionResult SignIn([FromBody]string token)
+        //public IActionResult SignIn([FromBody]FirebaseUser user)
         {
             Console.Write("Pause");
 
+            var tokenHandler = new JwtSecurityTokenHandler();
 
-
-            return Json(user);
+            var readToken = tokenHandler.ReadJwtToken(token);
+            
+            return Json(readToken);
         }
     }
 }

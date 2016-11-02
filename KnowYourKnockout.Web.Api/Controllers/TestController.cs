@@ -11,51 +11,52 @@ namespace KnowYourKnockout.Web.Api.Controllers
     [Route("api/[controller]")]
     public class TestController : Controller
     {
-        // GET api/values
         [HttpGet]
-        public IEnumerable<User> Get()
+        public IActionResult Get()
         {
-            return new User[] {
+            return Json(new List<User>
+            {
                 new User
                 {
                     Id = Guid.NewGuid(),
-                    DisplayName = "1 - Jim"
+                    DisplayName = string.Format("{0} - Jim", 642)
                 },
                 new User
                 {
                     Id = Guid.NewGuid(),
-                    DisplayName = "2 - Bill"
+                    DisplayName = string.Format("{0} - Jim", 235)
                 }
-            };
+            });
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
-        public User Get(int id)
+        public IActionResult Get(int id)
         {
-            return new User
+            return Json(new User
             {
                 Id = Guid.NewGuid(),
                 DisplayName = string.Format("{0} - Jim", id)
-            };
+            });
         }
 
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody]MyUser user)
+        public IActionResult Post([FromBody]User user)
         {
+            user.DisplayName = string.Format("POST - {0}", user.DisplayName);
+            return Json(user);
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(int id, [FromBody]User user)
         {
+            user.DisplayName = string.Format("PUT - Id: {0} - {1}", id, user.DisplayName);
+            return Json(user);
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            return NoContent();
         }
     }
 }

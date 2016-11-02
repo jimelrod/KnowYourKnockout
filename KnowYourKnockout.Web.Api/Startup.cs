@@ -39,6 +39,21 @@ namespace KnowYourKnockout.Web.Api
             // Add framework services.
             services.AddMvc();
 
+            services.AddCors(options => {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => 
+                        builder
+                            //.AllowAnyOrigin()
+                            .WithOrigins("http://localhost:8080", "http://localhost:9000")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod());
+            });
+
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new CorsAuthorizationFilterFactory("AllowSpecificOrigin"));
+            });
+
             // DI Mapping
             services.AddTransient<UserLogic, UserLogic>();
             services.AddTransient<TagLogic, TagLogic>();
@@ -57,8 +72,9 @@ namespace KnowYourKnockout.Web.Api
             loggerFactory.AddNLog();
             env.ConfigureNLog("nlog.config");
 
-            app.UseCors(builder => builder.WithOrigins("*"));// This WILL CHANGE!!!!! You know... security and whatnot...
+            //app.UseCors(builder => builder.AllowAnyMethod().AllowAnyOrigin());// This WILL CHANGE!!!!! You know... security and whatnot...
             app.UseMvc();
+
         }
     }
 }

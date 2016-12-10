@@ -5,15 +5,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using KnowYourKnockout.Data.Models;
 using KnowYourKnockout.Web.Api.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KnowYourKnockout.Web.Api.Controllers
 {
     [Route("api/[controller]")]
+    [RequireHttps]
+    [Authorize("FirebaseJwt")]
     public class TestController : Controller
     {
         [HttpGet]
         public IActionResult Get()
         {
+            
+
+
+
+
+
+
             return Json(new List<User>
             {
                 new User
@@ -29,6 +39,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
             });
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {

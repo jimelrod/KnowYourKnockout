@@ -72,7 +72,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody]User user)
+        public IActionResult Post([FromBody]User user)
         {
             // Validation
             var errors = new List<KykApiError>();

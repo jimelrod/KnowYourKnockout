@@ -6,148 +6,66 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
 
 namespace EODG.FirebaseAuthTool
 {
+    /// <summary>
+    /// Using https://firebase.google.com/docs/auth/admin/verify-id-tokens
+    /// as reference for validation
+    /// </summary>
     public class FirebaseAuth
     {
-        private const string FIREBASE_PUBLIC_KEY_URL = "https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com";
         private const string EXPECTED_ALGORITHM = "RS256";
-        private const string FIREBASE_PROJECT_ID = "knowyourknockout";
+        private const string PUBLIC_KEY_URL = "https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com";
 
-        private static FirebaseAuth _instance;
-        private readonly string _issuer;
-
-        private Dictionary<string, string> _certificatesByKey;
-        private DateTime _previousPublicKeyCallTime;
-        private TimeSpan _maxAge;
+        private string _projectId;
         private JwtSecurityTokenHandler _tokenHandler;
+        private FirebasePublicKeyHandler _publicKeyHandler;
 
-        private FirebaseAuth()
+        public FirebaseAuth(string projectId)
         {
-            _previousPublicKeyCallTime = DateTime.Now;
-            _maxAge = new TimeSpan(0);
-            _issuer = $"https://securetoken.google.com/{FIREBASE_PROJECT_ID}";
+            _projectId = projectId;
             _tokenHandler = new JwtSecurityTokenHandler();
+            _publicKeyHandler = new FirebasePublicKeyHandler(PUBLIC_KEY_URL);
         }
 
-        public static FirebaseAuth GetInstance()
+        public bool TryValidateToken(string rawJwt, out SecurityToken token)
         {
-            if (_instance == null)
-            {
-                _instance = new FirebaseAuth();
-            }
+            token = null;
 
-            return _instance;
-        }
+            var jwt = _tokenHandler.ReadJwtToken(rawJwt);
 
-        public bool ValidateToken(string rawToken, string uid)
-        {
-            var token = _tokenHandler.ReadJwtToken(rawToken);
+            jwt.Payload.AddClaim(new System.Security.Claims.Claim("nbf", ((int)jwt.Payload.Iat).ToString()));
 
-            var parameters = new TokenValidationParameters
-            {
-                ValidAudience = FIREBASE_PROJECT_ID,
-                ValidIssuer = _issuer,
-                ValidateAudience = true,
-                ValidateIssuer = true
-            };
-
-            SecurityToken outputToken;
-            var x = _tokenHandler.ValidateToken(rawToken, new TokenValidationParameters(), out outputToken);
-            var y = (JwtSecurityToken)outputToken;
-
-
-            return
-                VerifyHeader(token) &&
-                VerifyPayload(token, uid) &&
-                VerifySignature(token);
-        }
-
-        public bool ValidateShit()
-        {
-            return true;
-        }
-
-        #region Verification
-
-        private bool VerifyHeader(JwtSecurityToken token)
-        {
-            if (token.Header.Alg != EXPECTED_ALGORITHM)
+            // Get public key
+            X509SecurityKey publicKey;
+            if (!_publicKeyHandler.TryGetKey(jwt.Header.Kid, out publicKey))
             {
                 return false;
             }
 
-            if (DateTime.Now - _previousPublicKeyCallTime > _maxAge)
+            // verify key
+            var tokenValidationParameters = new TokenValidationParameters
             {
-                GetPublicKeys().Wait();
+                IssuerSigningKey = publicKey,
+                ValidAudience = _projectId,
+                ValidIssuer = $"https://securetoken.google.com/{_projectId}",
+                ValidateLifetime = true
+            };
+
+            try
+            {
+                _tokenHandler.ValidateToken(jwt.RawData, tokenValidationParameters, out token);
+                return true;
             }
-
-            return _certificatesByKey.ContainsKey(token.Header.Kid);
-        }
-
-        private bool VerifyPayload(JwtSecurityToken token, string uid)
-        {
-            return
-                   // Verify expiration is in future
-                   FromUnixTime((int)token.Payload.Exp) > DateTime.Now &&
-
-                   // Verify issue time is in the past
-                   DateTime.Now < FromUnixTime((int)token.Payload.Exp) &&
-
-                   // Verify audience is firebase project id
-                   token.Payload.Aud.Contains(FIREBASE_PROJECT_ID) &&
-
-                   // verify issuer is valid
-                   token.Payload.Iss == _issuer &&
-
-                   // verify sub matches uid
-                   token.Payload.Sub == uid;
-        }
-
-        private bool VerifySignature(JwtSecurityToken token)
-        {
-            var x = token.Header.Kid;
-
-
-            return true;
-        }
-
-        #endregion
-
-        #region Helpers
-
-        private async Task GetPublicKeys()
-        {
-            using (var client = new HttpClient())
+            catch
             {
-                try
-                {
-                    var response = await client.GetAsync(FIREBASE_PUBLIC_KEY_URL);
-                    response.EnsureSuccessStatusCode();
-                    _maxAge = (TimeSpan)response.Headers.CacheControl.MaxAge;
-                    var stringResponse = await response.Content.ReadAsStringAsync();
-                    _certificatesByKey = JsonConvert.DeserializeObject<Dictionary<string, string>>(stringResponse);
-                }
-                catch(HttpRequestException hEx)
-                {
-                    Console.WriteLine($"Request exception: {hEx.Message}");
-                }
-                
+                // Don't know if we need to do anything with the exception...
+                return false;
             }
         }
-
-        /// <summary>
-        /// http://stackoverflow.com/a/2883645/2285245
-        /// </summary>
-        /// <param name="unixTime"></param>
-        /// <returns></returns>
-        private static DateTime FromUnixTime(long unixTime)
-        {
-            var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            return epoch.AddSeconds(unixTime);
-        }
-
-        #endregion
     }
 }

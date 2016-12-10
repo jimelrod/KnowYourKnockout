@@ -1,8 +1,12 @@
-﻿using KnowYourKnockout.Business;
+﻿using EODG.FirebaseAuthTool;
+using KnowYourKnockout.Business;
 using KnowYourKnockout.Data;
 using KnowYourKnockout.Data.Models;
 using KnowYourKnockout.Data.Repositories;
 using KnowYourKnockout.Utility;
+using KnowYourKnockout.Web.Api.Auth;
+using KnowYourKnockout.Web.Api.Config;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -11,8 +15,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using NLog.Extensions.Logging;
 using System;
+using System.IO;
 
 namespace KnowYourKnockout.Web.Api
 {
@@ -33,28 +39,44 @@ namespace KnowYourKnockout.Web.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Server=DESKTOP-STNOHJO;Database=KnowYourKnockout;Trusted_Connection=True";
-            services.AddDbContext<KnowYourKnockoutContext>(options => options.UseSqlServer(connection));
+            // Change this to be environmemnt specefic....
+            services.AddDbContext<KnowYourKnockoutContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("Local"))
+            );
 
-            // Add framework services.
             services.AddMvc();
 
             services.AddCors(options => {
-                options.AddPolicy("AllowSpecificOrigin",
+                options.AddPolicy("AllowAnyOrigin",
                     builder => 
                         builder
-                            //.AllowAnyOrigin()
-                            .WithOrigins("http://localhost:8080", "http://localhost:9000")
+                            .AllowAnyOrigin()
+                            //.WithOrigins("http://localhost:8080", "http://localhost:9000")
                             .AllowAnyHeader()
                             .AllowAnyMethod());
             });
 
             services.Configure<MvcOptions>(options =>
             {
-                options.Filters.Add(new CorsAuthorizationFilterFactory("AllowSpecificOrigin"));
+                options.Filters.Add(new CorsAuthorizationFilterFactory("AllowAnyOrigin"));
             });
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("FirebaseJwt", policy =>
+                {
+                    policy.Requirements.Add(new FirebaseAuthRequirement());
+                });
+            });
+
+            services.AddSingleton<IAuthorizationHandler, FirebaseAuthHandler>();
+
+            services.AddOptions();
+
+            services.Configure<FirebaseAuthSettings>(Configuration.GetSection("FirebaseAuthSettings"));
+
             // DI Mapping
+            // TODO: FIGURE OUT PROPOER TYPE... NOT TRANSIENT PROBABLY
             services.AddTransient<UserLogic, UserLogic>();
             services.AddTransient<TagLogic, TagLogic>();
             services.AddTransient<Log, Log>();
@@ -72,9 +94,12 @@ namespace KnowYourKnockout.Web.Api
             loggerFactory.AddNLog();
             env.ConfigureNLog("nlog.config");
 
-            //app.UseCors(builder => builder.AllowAnyMethod().AllowAnyOrigin());// This WILL CHANGE!!!!! You know... security and whatnot...
             app.UseMvc();
+        }
 
+        private bool MyValidator(SecurityKey k, SecurityToken t, TokenValidationParameters p)
+        {
+            return true;
         }
     }
 }

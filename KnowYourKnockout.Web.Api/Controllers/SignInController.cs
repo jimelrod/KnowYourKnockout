@@ -1,28 +1,26 @@
-﻿using KnowYourKnockout.Web.Api.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
-using Microsoft.IdentityModel.Tokens;
 
 namespace KnowYourKnockout.Web.Api.Controllers
 {
     [Route("api/[controller]")]
+    [RequireHttps]
+
     public class SignInController : Controller
     {
-        [HttpPost]
-        public IActionResult SignIn([FromBody]string token)
-        //public IActionResult SignIn([FromBody]FirebaseUser user)
+        [HttpGet]
+        public IActionResult SignIn()
         {
-            Console.Write("Pause");
+            return Ok();
+        }
 
-            var tokenHandler = new JwtSecurityTokenHandler();
-
-            var readToken = tokenHandler.ReadJwtToken(token);
-            
-            return Json(readToken);
+        [HttpPost]
+        public IActionResult SignUp()
+        {
+            return Ok();
         }
     }
 }

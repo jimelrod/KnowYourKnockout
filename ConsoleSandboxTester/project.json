@@ -5,10 +5,11 @@
   },
 
   "dependencies": {
-    "KnowYourKnockout.Business": "1.0.0-*",
-    "KnowYourKnockout.Data": "1.0.0-*",
-    "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
-    "Microsoft.NETCore.App": "1.1.0"
+    "EODG.FirebaseAuthTool": "1.0.0-*",
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.0.1"
+    }
   },
 
   "frameworks": {

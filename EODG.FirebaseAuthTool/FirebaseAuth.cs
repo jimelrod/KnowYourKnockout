@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Claims;
 
 namespace EODG.FirebaseAuthTool
 {
@@ -18,6 +19,7 @@ namespace EODG.FirebaseAuthTool
     /// </summary>
     public class FirebaseAuth
     {
+        // TODO: Refactor to use config... somehow...
         private const string EXPECTED_ALGORITHM = "RS256";
         private const string PUBLIC_KEY_URL = "https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com";
 
@@ -38,7 +40,7 @@ namespace EODG.FirebaseAuthTool
 
             var jwt = _tokenHandler.ReadJwtToken(rawJwt);
 
-            jwt.Payload.AddClaim(new System.Security.Claims.Claim("nbf", ((int)jwt.Payload.Iat).ToString()));
+            jwt.Payload.AddClaim(new Claim("nbf", ((int)jwt.Payload.Iat).ToString()));
 
             // Get public key
             X509SecurityKey publicKey;
@@ -61,10 +63,44 @@ namespace EODG.FirebaseAuthTool
                 _tokenHandler.ValidateToken(jwt.RawData, tokenValidationParameters, out token);
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
-                // Don't know if we need to do anything with the exception...
+                // TODO: Don't know if we need to do anything with the exception...
                 return false;
+            }
+        }
+
+        public ClaimsPrincipal ValidateToken(string rawJwt, out SecurityToken token)
+        {
+            token = null;
+
+            var jwt = _tokenHandler.ReadJwtToken(rawJwt);
+
+            jwt.Payload.AddClaim(new Claim("nbf", ((int)jwt.Payload.Iat).ToString()));
+
+            // Get public key
+            X509SecurityKey publicKey;
+            if (!_publicKeyHandler.TryGetKey(jwt.Header.Kid, out publicKey))
+            {
+                return null;
+            }
+
+            // verify key
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                IssuerSigningKey = publicKey,
+                ValidAudience = _projectId,
+                ValidIssuer = $"https://securetoken.google.com/{_projectId}",
+                ValidateLifetime = true
+            };
+
+            try
+            {
+                return _tokenHandler.ValidateToken(jwt.RawData, tokenValidationParameters, out token);
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
     }

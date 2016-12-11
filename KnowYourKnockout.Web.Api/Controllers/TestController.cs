@@ -10,31 +10,24 @@ using Microsoft.AspNetCore.Authorization;
 namespace KnowYourKnockout.Web.Api.Controllers
 {
     [Route("api/[controller]")]
-    [RequireHttps]
-    [Authorize("FirebaseJwt")]
-    public class TestController : Controller
+    public class TestController : FirebaseSecureController
     {
         [HttpGet]
         public IActionResult Get()
         {
-            
-
-
-
-
-
+            var x = UserId;
 
             return Json(new List<User>
             {
                 new User
                 {
                     Id = 123,
-                    DisplayName = string.Format("{0} - Jim", 642)
+                    DisplayName = string.Format("{0} - Jim", UserId)
                 },
                 new User
                 {
                     Id = 345,
-                    DisplayName = string.Format("{0} - Jim", 235)
+                    DisplayName = string.Format("{0} - Jim2", 235)
                 }
             });
         }
@@ -50,6 +43,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
             });
         }
 
+        // TODO: Send a CreatedAt response?
         [HttpPost]
         public IActionResult Post([FromBody]User user)
         {

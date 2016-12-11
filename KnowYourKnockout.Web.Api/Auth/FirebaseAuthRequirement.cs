@@ -14,7 +14,7 @@ namespace KnowYourKnockout.Web.Api.Auth
             Auth = new FirebaseAuth(projectId);
         }
 
-        // THIS IS PROBABLY THE WRONG WAY TO GO ABOUT IT!!!
+        // HACK: THIS IS PROBABLY THE WRONG WAY TO GO ABOUT IT!!!
         public FirebaseAuth Auth { get; set; }
     }
 }

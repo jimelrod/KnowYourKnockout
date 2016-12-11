@@ -35,17 +35,23 @@ namespace KnowYourKnockout.Web.Api.Auth
                 return Task.CompletedTask;
             }
 
-            SecurityToken token;
-            if (requirement.Auth.TryValidateToken(jwt, out token))
-            {
-                //mvcContext.HttpContext.
-                context.Succeed(requirement);
-            }
-            else
-            {
-                context.Fail();
-            }
+            // TODO: Clean up... and put in failure shit...
+            //SecurityToken token;
+            //if (requirement.Auth.TryValidateToken(jwt, out token))
+            //{
+            //    //mvcContext.HttpContext.
+            //    context.Succeed(requirement);
+            //}
+            //else
+            //{
+            //    context.Fail();
+            //}
 
+            SecurityToken token;
+            mvcContext.HttpContext.User = requirement.Auth.ValidateToken(jwt, out token);
+            var x = requirement.Auth.ValidateToken(jwt, out token);
+
+            context.Succeed(requirement);
             return Task.CompletedTask;
         }
     }

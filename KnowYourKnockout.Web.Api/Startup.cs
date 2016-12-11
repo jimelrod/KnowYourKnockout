@@ -65,7 +65,8 @@ namespace KnowYourKnockout.Web.Api
             {
                 options.AddPolicy("FirebaseJwt", policy =>
                 {
-                    policy.Requirements.Add(new FirebaseAuthRequirement());
+                    // TODO: Pull from appsettings.json...
+                    policy.Requirements.Add(new FirebaseAuthRequirement("knowyourknockout"));
                 });
             });
 

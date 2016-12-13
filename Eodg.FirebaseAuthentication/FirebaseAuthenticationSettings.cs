@@ -1,6 +1,6 @@
-﻿namespace KnowYourKnockout.Web.Api.Config
+﻿namespace Eodg.FirebaseAuthentication
 {
-    public class FirebaseAuthSettings
+    public class FirebaseAuthenticationSettings
     {
         public string PublicKeyUrl { get; set; }
         public string ProjectId { get; set; }

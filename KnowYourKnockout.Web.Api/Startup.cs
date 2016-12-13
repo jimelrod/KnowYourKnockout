@@ -1,11 +1,9 @@
-﻿using EODG.FirebaseAuthTool;
+﻿using Eodg.FirebaseAuthentication;
 using KnowYourKnockout.Business;
 using KnowYourKnockout.Data;
 using KnowYourKnockout.Data.Models;
 using KnowYourKnockout.Data.Repositories;
 using KnowYourKnockout.Utility;
-using KnowYourKnockout.Web.Api.Auth;
-using KnowYourKnockout.Web.Api.Config;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -63,18 +61,21 @@ namespace KnowYourKnockout.Web.Api
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("FirebaseJwt", policy =>
+                options.AddPolicy("FirebaseSecure", policy =>
                 {
-                    // TODO: Pull from appsettings.json...
-                    policy.Requirements.Add(new FirebaseAuthRequirement("knowyourknockout"));
+                    var settings = Configuration
+                        .GetSection(nameof(FirebaseAuthenticationSettings))
+                        .Get<FirebaseAuthenticationSettings>();
+
+                    policy.Requirements.Add(new FirebaseAuthenticationRequirement(settings));
                 });
             });
 
-            services.AddSingleton<IAuthorizationHandler, FirebaseAuthHandler>();
+            services.AddSingleton<IAuthorizationHandler, FirebaseAuthenticationHandler>();
 
             services.AddOptions();
 
-            services.Configure<FirebaseAuthSettings>(Configuration.GetSection("FirebaseAuthSettings"));
+            services.Configure<FirebaseAuthenticationSettings>(Configuration.GetSection("FirebaseAuthSettings"));
 
             // DI Mapping
             // TODO: FIGURE OUT PROPOER TYPE... NOT TRANSIENT PROBABLY

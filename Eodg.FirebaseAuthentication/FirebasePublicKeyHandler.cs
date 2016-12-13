@@ -7,9 +7,14 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EODG.FirebaseAuthTool
+namespace Eodg.FirebaseAuthentication
 {
-    public class FirebasePublicKeyHandler
+    // TODO: FIGURE OUT THIS ASYNCH SHIT!!!!
+
+    /// <summary>
+    /// 
+    /// </summary>
+    internal class FirebasePublicKeyHandler
     {
         private string _keyUrl;
         private Dictionary<string, string> _certificatesByKid;

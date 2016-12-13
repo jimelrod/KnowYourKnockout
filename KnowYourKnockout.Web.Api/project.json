@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "EODG.FirebaseAuthTool": "1.0.0-*",
+    "Eodg.FirebaseAuthentication": "1.0.0-*",
     "KnowYourKnockout.Business": "1.0.0-*",
     "KnowYourKnockout.Common": "1.0.0-*",
     "KnowYourKnockout.Utility": "1.0.0-*",

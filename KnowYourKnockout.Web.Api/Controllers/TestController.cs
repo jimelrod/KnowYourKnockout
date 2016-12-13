@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace KnowYourKnockout.Web.Api.Controllers
 {
     [Route("api/[controller]")]
-    public class TestController : FirebaseSecureController
+    public class TestController : FirebaseSdecureController
     {
         [HttpGet]
         public IActionResult Get()

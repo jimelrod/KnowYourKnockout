@@ -2,16 +2,13 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace KnowYourKnockout.Web.Api.Auth
+namespace Eodg.FirebaseAuthentication
 {
-    public class FirebaseAuthHandler : AuthorizationHandler<FirebaseAuthRequirement>
+    public class FirebaseAuthenticationHandler : AuthorizationHandler<FirebaseAuthenticationRequirement>
     {
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, FirebaseAuthRequirement requirement)
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, FirebaseAuthenticationRequirement requirement)
         {
             var mvcContext = context.Resource as AuthorizationFilterContext;
             if (mvcContext == null)
@@ -35,23 +32,19 @@ namespace KnowYourKnockout.Web.Api.Auth
                 return Task.CompletedTask;
             }
 
-            // TODO: Clean up... and put in failure shit...
-            //SecurityToken token;
-            //if (requirement.Auth.TryValidateToken(jwt, out token))
-            //{
-            //    //mvcContext.HttpContext.
-            //    context.Succeed(requirement);
-            //}
-            //else
-            //{
-            //    context.Fail();
-            //}
+            try
+            {
+                SecurityToken token;    // TODO: Should we do somehting with this token???
+                mvcContext.HttpContext.User = requirement.Auth.ValidateToken(jwt, out token);
 
-            SecurityToken token;
-            mvcContext.HttpContext.User = requirement.Auth.ValidateToken(jwt, out token);
-            var x = requirement.Auth.ValidateToken(jwt, out token);
+                context.Succeed(requirement);
+            }
+            catch (Exception ex)
+            {
+                // TODO: Something with the exception probably...
+                context.Fail();
+            }
 
-            context.Succeed(requirement);
             return Task.CompletedTask;
         }
     }

@@ -1,37 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net.Http;
-using Newtonsoft.Json;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
 using System.Security.Claims;
 
-namespace EODG.FirebaseAuthTool
+namespace Eodg.FirebaseAuthentication
 {
-    /// <summary>
-    /// Using https://firebase.google.com/docs/auth/admin/verify-id-tokens
-    /// as reference for validation
-    /// </summary>
-    public class FirebaseAuth
+    internal class FirebaseAuthenticationEngine
     {
-        // TODO: Refactor to use config... somehow...
-        private const string EXPECTED_ALGORITHM = "RS256";
-        private const string PUBLIC_KEY_URL = "https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com";
-
-        private string _projectId;
         private JwtSecurityTokenHandler _tokenHandler;
         private FirebasePublicKeyHandler _publicKeyHandler;
+        private FirebaseAuthenticationSettings _settings;
 
-        public FirebaseAuth(string projectId)
+        public FirebaseAuthenticationEngine(FirebaseAuthenticationSettings settings)
         {
-            _projectId = projectId;
+            _settings = settings;
             _tokenHandler = new JwtSecurityTokenHandler();
-            _publicKeyHandler = new FirebasePublicKeyHandler(PUBLIC_KEY_URL);
+            _publicKeyHandler = new FirebasePublicKeyHandler(settings.PublicKeyUrl);
         }
 
         public bool TryValidateToken(string rawJwt, out SecurityToken token)
@@ -53,8 +37,8 @@ namespace EODG.FirebaseAuthTool
             var tokenValidationParameters = new TokenValidationParameters
             {
                 IssuerSigningKey = publicKey,
-                ValidAudience = _projectId,
-                ValidIssuer = $"https://securetoken.google.com/{_projectId}",
+                ValidAudience = _settings.ProjectId,
+                ValidIssuer = _settings.Issuer,
                 ValidateLifetime = true
             };
 
@@ -89,8 +73,8 @@ namespace EODG.FirebaseAuthTool
             var tokenValidationParameters = new TokenValidationParameters
             {
                 IssuerSigningKey = publicKey,
-                ValidAudience = _projectId,
-                ValidIssuer = $"https://securetoken.google.com/{_projectId}",
+                ValidAudience = _settings.ProjectId,
+                ValidIssuer = _settings.Issuer,
                 ValidateLifetime = true
             };
 
@@ -100,7 +84,7 @@ namespace EODG.FirebaseAuthTool
             }
             catch (Exception ex)
             {
-                return null;
+                throw new Exception("Unable to validate token. See inner exception for details.", ex);
             }
         }
     }

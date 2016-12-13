@@ -7,8 +7,8 @@
 
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>d7d836c1-0ea9-4e62-9cc3-64439eb4c639</ProjectGuid>
-    <RootNamespace>ConsoleSandboxTester</RootNamespace>
+    <ProjectGuid>7f151aae-d7d4-4aec-ba73-14970db85827</ProjectGuid>
+    <RootNamespace>Eodg.FirebaseAuthentication</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>

@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ConsoleSandboxTester")]
+[assembly: AssemblyProduct("Eodg.FirebaseAuthentication")]
 [assembly: AssemblyTrademark("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -16,4 +16,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d7d836c1-0ea9-4e62-9cc3-64439eb4c639")]
+[assembly: Guid("7f151aae-d7d4-4aec-ba73-14970db85827")]

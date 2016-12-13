@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 
-namespace KnowYourKnockout.Web.Api.Controllers
+namespace Eodg.FirebaseAuthentication
 {
     [RequireHttps]
     [Authorize("FirebaseSecure")]
-    public abstract class FirebaseSdecureController : Controller
+    public abstract class FirebaseSecureController : Controller
     {
         private string _userId = null;
 
@@ -21,7 +21,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
                     {
                         _userId = HttpContext.User.Claims.Single(c => c.Type == "user_id").Value;
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         // TODO: Should probably do something with the exception...
                         throw ex;

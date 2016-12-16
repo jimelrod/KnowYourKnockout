@@ -90,10 +90,32 @@ namespace KnowYourKnockout.Business
 
         #endregion
 
-        // MAY NOT NEED!!!
+        // TODO: Investigate if this should be provate or even need to be called in the UsersController
         public bool UserExists(string emailAddress)
         {
             return _dataApi.UserRepository.Get(u => u.EmailAddress == emailAddress).Any();
+        }
+
+        // TODO: Refactor this shit...
+        public User SignInUser(User user)
+        {
+            if (!_dataApi.UserRepository.Get(u => u.FirebaseId == user.FirebaseId).Any())
+            {
+                return _dataApi.UserRepository.Add(user);
+            }
+
+            var storedUser = _dataApi.UserRepository.Get(u => u.FirebaseId == user.FirebaseId).Single();
+
+            if (storedUser.DisplayName != user.DisplayName ||
+                storedUser.PhotoUrl != user.PhotoUrl)
+            {
+                if (!_dataApi.UserRepository.Update(user))
+                {
+                    throw new Exception("Could not update user profile...");
+                }
+            }
+
+            return storedUser;
         }
     }
 }

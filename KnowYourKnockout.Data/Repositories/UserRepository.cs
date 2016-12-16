@@ -39,7 +39,7 @@ namespace KnowYourKnockout.Data.Repositories
                         // Violates UNIQUE constraint
                         // Depending on need, messages may move to a dictionary[code]
                         case 2627:
-                            throw new KykDataLayerException(ExceptionType.Client, "Record in Users already exists with secified value. See Inner Exception for details.", sEx);
+                            throw new KykDataLayerException(ExceptionType.Client, "Record in Users already exists with specified value. See Inner Exception for details.", sEx);
 
                     }
                 }

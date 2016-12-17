@@ -63,7 +63,6 @@ namespace KnowYourKnockout.Web.Api
             {
                 options.AddPolicy("FirebaseSecure", policy =>
                 {
-                    // Please put your setttings in the appsettings.json file accordingly
                     var settings = Configuration
                         .GetSection(nameof(FirebaseAuthenticationSettings))
                         .Get<FirebaseAuthenticationSettings>();
@@ -72,7 +71,7 @@ namespace KnowYourKnockout.Web.Api
                 });
             });
 
-            // I'll document why we need this when I figure it out... but we do, indeed, need this...
+            // TODO: I'll document why we need this when I figure it out... but we do, indeed, need this...
             services.AddSingleton<IAuthorizationHandler, FirebaseAuthenticationHandler>();
 
             services.AddOptions();

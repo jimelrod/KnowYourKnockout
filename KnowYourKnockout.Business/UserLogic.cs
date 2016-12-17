@@ -117,5 +117,23 @@ namespace KnowYourKnockout.Business
 
             return storedUser;
         }
+
+        public void ActivateAccount(User user)
+        {
+            // TODO: Figure out how the exception handling should work...
+            try
+            {
+                user.IsActive = true;
+
+                if (!_dataApi.UserRepository.Update(user))
+                {
+                    throw new Exception($"Could not activate account for user with firebase id: {user.FirebaseId}");
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception($"Could not activate account for user with firebase id: {user.FirebaseId}", ex);
+            }
+        }
     }
 }

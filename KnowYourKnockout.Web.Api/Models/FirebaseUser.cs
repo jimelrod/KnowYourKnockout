@@ -19,5 +19,8 @@ namespace KnowYourKnockout.Web.Api.Models
 
         [JsonProperty(PropertyName = "isFirstTimeUser")]
         public bool IsFirstTimeUser { get; set; }
+
+        [JsonProperty(PropertyName = "emailVerified")]
+        public bool EmailVerified { get; set; }
     }
 }

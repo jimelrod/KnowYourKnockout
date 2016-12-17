@@ -18,55 +18,27 @@ namespace Eodg.FirebaseAuthentication
             _publicKeyHandler = new FirebasePublicKeyHandler(settings.PublicKeyUrl);
         }
 
-        public bool TryValidateToken(string rawJwt, out SecurityToken token)
-        {
-            token = null;
-
-            var jwt = _tokenHandler.ReadJwtToken(rawJwt);
-
-            jwt.Payload.AddClaim(new Claim("nbf", ((int)jwt.Payload.Iat).ToString()));
-
-            // Get public key
-            X509SecurityKey publicKey;
-            if (!_publicKeyHandler.TryGetKey(jwt.Header.Kid, out publicKey))
-            {
-                return false;
-            }
-
-            // verify key
-            var tokenValidationParameters = new TokenValidationParameters
-            {
-                IssuerSigningKey = publicKey,
-                ValidAudience = _settings.ProjectId,
-                ValidIssuer = _settings.Issuer,
-                ValidateLifetime = true
-            };
-
-            try
-            {
-                _tokenHandler.ValidateToken(jwt.RawData, tokenValidationParameters, out token);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                // TODO: Don't know if we need to do anything with the exception...
-                return false;
-            }
-        }
-
+        // TODO: Better handle this exception shit...
         public ClaimsPrincipal ValidateToken(string rawJwt, out SecurityToken token)
         {
             token = null;
 
             var jwt = _tokenHandler.ReadJwtToken(rawJwt);
 
+            // Make sure email is verified... Not google specific, just to lock down this API to verified accounts
+            if (!(bool)jwt.Payload["email_verified"])
+            {
+                throw new Exception("Email address not verified for account");
+            }
+
             jwt.Payload.AddClaim(new Claim("nbf", ((int)jwt.Payload.Iat).ToString()));
 
             // Get public key
             X509SecurityKey publicKey;
             if (!_publicKeyHandler.TryGetKey(jwt.Header.Kid, out publicKey))
             {
-                return null;
+                // TODO: There is no inner exception for this to reference...
+                throw new Exception("Invalid kid supplied in token.");
             }
 
             // verify key

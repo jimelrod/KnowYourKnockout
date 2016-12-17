@@ -20,14 +20,8 @@ namespace KnowYourKnockout.Web.Api.Controllers
             _userLogic = userLogic;
         }
 
-        //[HttpGet]
-        //public IActionResult SignIn()
-        //{
-        //    return Ok();
-        //}
-
         [HttpPost]
-        public IActionResult SignUp([FromBody] FirebaseUser firebaseUser) 
+        public IActionResult SignIn([FromBody] FirebaseUser firebaseUser) 
         {
             // TODO: Validate model, probably...
 
@@ -39,7 +33,8 @@ namespace KnowYourKnockout.Web.Api.Controllers
                     DisplayName = firebaseUser.DisplayName,
                     EmailAddress = firebaseUser.EmailAddress,
                     FirebaseId = firebaseUser.FirebaseId,
-                    PhotoUrl = firebaseUser.PhotoUrl
+                    PhotoUrl = firebaseUser.PhotoUrl,
+                    IsActive = true
                 });
 
                 var response = new KykSuccessResponse<User>(user);

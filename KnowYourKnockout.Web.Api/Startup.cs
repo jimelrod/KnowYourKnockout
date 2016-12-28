@@ -79,7 +79,7 @@ namespace KnowYourKnockout.Web.Api
             services.Configure<FirebaseAuthenticationSettings>(Configuration.GetSection("FirebaseAuthSettings"));
 
             // DI Mapping
-            // TODO: FIGURE OUT PROPOER TYPE... NOT TRANSIENT PROBABLY
+            // TODO: Figure out proper type... not transient, probably. Also, maybe make interfaces and do autodetect?
             services.AddTransient<UserLogic, UserLogic>();
             services.AddTransient<TagLogic, TagLogic>();
             services.AddTransient<Log, Log>();

@@ -4,9 +4,6 @@ using KnowYourKnockout.Data.Models;
 using KnowYourKnockout.Web.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace KnowYourKnockout.Web.Api.Controllers
 {
@@ -18,6 +15,34 @@ namespace KnowYourKnockout.Web.Api.Controllers
         public AccountsController(UserLogic userLogic)
         {
             _userLogic = userLogic;
+        }
+
+        [HttpGet]
+        public IActionResult Test()
+        {
+            var myUser = new User();
+
+            try
+            {
+                // TODO: Maybe use POCOs?
+                var user = _userLogic.SignInUser(new User
+                {
+                    //DisplayName = firebaseUser.DisplayName,
+                    //EmailAddress = firebaseUser.EmailAddress,
+                    //FirebaseId = firebaseUser.FirebaseId,
+                    //PhotoUrl = firebaseUser.PhotoUrl,
+                    //IsActive = firebaseUser.EmailVerified
+                });
+
+                var response = new KykSuccessResponse<User>(user);
+
+                return Json(response);
+            }
+            catch (Exception ex)
+            {
+                // TODO: FIGURE OUT WHAT THIS SHOULD ACTUALLY BE!
+                return StatusCode(500, new KykExceptionResponse(ex));
+            }
         }
 
         [HttpPost]
@@ -34,7 +59,7 @@ namespace KnowYourKnockout.Web.Api.Controllers
                     EmailAddress = firebaseUser.EmailAddress,
                     FirebaseId = firebaseUser.FirebaseId,
                     PhotoUrl = firebaseUser.PhotoUrl,
-                    IsActive = true
+                    IsActive = firebaseUser.EmailVerified
                 });
 
                 var response = new KykSuccessResponse<User>(user);

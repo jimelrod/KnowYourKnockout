@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace KnowYourKnockout.Web.Api.Controllers
 {
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")]
     public class TestController : FirebaseSecureController
     {
         [HttpGet]

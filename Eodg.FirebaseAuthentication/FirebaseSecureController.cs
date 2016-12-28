@@ -7,6 +7,7 @@ namespace Eodg.FirebaseAuthentication
 {
     [RequireHttps]
     [Authorize("FirebaseSecure")]
+    [Route("api/[controller]")]
     public abstract class FirebaseSecureController : Controller
     {
         private string _userId = null;

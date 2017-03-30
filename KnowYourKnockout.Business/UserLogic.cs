@@ -1,6 +1,5 @@
 ﻿using KnowYourKnockout.Data;
 using KnowYourKnockout.Data.Models;
-using KnowYourKnockout.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +10,10 @@ namespace KnowYourKnockout.Business
     public class UserLogic// : LogicBase
     {
         private IKnowYourKnockoutDataApi _dataApi;
-        private Log _log;
 
-        public UserLogic(IKnowYourKnockoutDataApi dataApi, Log log)
+        public UserLogic(IKnowYourKnockoutDataApi dataApi)
         {
             _dataApi = dataApi;
-            _log = log;
         }
 
         #region Basic CRUD Ops
@@ -29,7 +26,6 @@ namespace KnowYourKnockout.Business
             }
             catch(Exception ex)
             {
-                _log.Insert(ex, GetType().ToString(), "GetUsers()");
                 throw ex;
             }
         }
@@ -42,7 +38,6 @@ namespace KnowYourKnockout.Business
             }
             catch (Exception ex)
             {
-                _log.Insert(ex, GetType().ToString(), "GetUser(Guid id)");
                 throw ex;
             }
         }
@@ -55,7 +50,6 @@ namespace KnowYourKnockout.Business
             }
             catch(Exception ex)
             {
-                _log.Insert(ex, GetType().ToString(), "AddUser(User user)");
                 throw ex;
             }
         }
@@ -70,7 +64,6 @@ namespace KnowYourKnockout.Business
             }
             catch (Exception ex)
             {
-                _log.Insert(ex, GetType().ToString(), "DeleteUser(User user, bool isHardDelete = false)");
                 throw ex;
             }
         }
@@ -83,7 +76,6 @@ namespace KnowYourKnockout.Business
             }
             catch(Exception ex)
             {
-                _log.Insert(ex, GetType().ToString(), "UpdateUserProfile(User user)");
                 throw ex;
             }
         }

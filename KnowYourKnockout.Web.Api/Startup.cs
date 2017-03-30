@@ -3,7 +3,6 @@ using KnowYourKnockout.Business;
 using KnowYourKnockout.Data;
 using KnowYourKnockout.Data.Models;
 using KnowYourKnockout.Data.Repositories;
-using KnowYourKnockout.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,8 +14,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using NLog.Extensions.Logging;
-using System;
-using System.IO;
 
 namespace KnowYourKnockout.Web.Api
 {
@@ -82,7 +79,6 @@ namespace KnowYourKnockout.Web.Api
             // TODO: Figure out proper type... not transient, probably. Also, maybe make interfaces and do autodetect?
             services.AddTransient<UserLogic, UserLogic>();
             services.AddTransient<TagLogic, TagLogic>();
-            services.AddTransient<Log, Log>();
             services.AddTransient<IKnowYourKnockoutContext, KnowYourKnockoutContext>();
             services.AddTransient<IKnowYourKnockoutDataApi, KnowYourKnockoutDataApi>();
             services.AddTransient<IKnowYourKnockoutRepository<User, int>, UserRepository>();
@@ -95,7 +91,6 @@ namespace KnowYourKnockout.Web.Api
             loggerFactory.AddDebug();
 
             loggerFactory.AddNLog();
-            env.ConfigureNLog("nlog.config");
 
             app.UseMvc();
         }

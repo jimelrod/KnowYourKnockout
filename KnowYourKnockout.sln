@@ -22,8 +22,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{25032BD4-CF3D-4393-80CB-19020B620F0F}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "KnowYourKnockout.Utility", "KnowYourKnockout.Utility\KnowYourKnockout.Utility.xproj", "{3B51FD24-5D50-4A18-AD40-CF658E935A65}"
-EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Eodg.FirebaseAuthentication", "Eodg.FirebaseAuthentication\Eodg.FirebaseAuthentication.xproj", "{7F151AAE-D7D4-4AEC-BA73-14970DB85827}"
 EndProject
 Global
@@ -54,10 +52,6 @@ Global
 		{A2E61CEE-54D2-4517-A25E-4F4F2828538D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2E61CEE-54D2-4517-A25E-4F4F2828538D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2E61CEE-54D2-4517-A25E-4F4F2828538D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3B51FD24-5D50-4A18-AD40-CF658E935A65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B51FD24-5D50-4A18-AD40-CF658E935A65}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B51FD24-5D50-4A18-AD40-CF658E935A65}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B51FD24-5D50-4A18-AD40-CF658E935A65}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7F151AAE-D7D4-4AEC-BA73-14970DB85827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7F151AAE-D7D4-4AEC-BA73-14970DB85827}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F151AAE-D7D4-4AEC-BA73-14970DB85827}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -2,7 +2,6 @@
 using KnowYourKnockout.Data;
 using KnowYourKnockout.Data.Exceptions;
 using KnowYourKnockout.Data.Models;
-using KnowYourKnockout.Utility;
 using KnowYourKnockout.Web.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
@@ -23,13 +22,9 @@ namespace KnowYourKnockout.Web.Api.Controllers
 
         private UserLogic _userLogic;
 
-        // TODO: Get rid of this...
-        private Log _log;
-
-        public UsersController(UserLogic userLogic, Log log)
+        public UsersController(UserLogic userLogic)
         {
             _userLogic = userLogic;
-            _log = log;
         }
 
         [HttpGet]

@@ -46,7 +46,6 @@ namespace KnowYourKnockout.Web.Api
                     builder => 
                         builder
                             .AllowAnyOrigin()
-                            //.WithOrigins("http://localhost:8080", "http://localhost:9000")
                             .AllowAnyHeader()
                             .AllowAnyMethod());
             });

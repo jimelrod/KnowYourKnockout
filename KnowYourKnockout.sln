@@ -11,8 +11,6 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "KnowYourKnockout.Data", "Kn
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "KnowYourKnockout.Business", "KnowYourKnockout.Business\KnowYourKnockout.Business.xproj", "{556DE24F-542E-4D4D-BDB0-10DB3845C83B}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "KnowYourKnockout.Common", "KnowYourKnockout.Common\KnowYourKnockout.Common.xproj", "{A2E61CEE-54D2-4517-A25E-4F4F2828538D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CDA89029-765A-4683-B321-5D9EBF2237EF}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
@@ -48,10 +46,6 @@ Global
 		{556DE24F-542E-4D4D-BDB0-10DB3845C83B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{556DE24F-542E-4D4D-BDB0-10DB3845C83B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{556DE24F-542E-4D4D-BDB0-10DB3845C83B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A2E61CEE-54D2-4517-A25E-4F4F2828538D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A2E61CEE-54D2-4517-A25E-4F4F2828538D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A2E61CEE-54D2-4517-A25E-4F4F2828538D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A2E61CEE-54D2-4517-A25E-4F4F2828538D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7F151AAE-D7D4-4AEC-BA73-14970DB85827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7F151AAE-D7D4-4AEC-BA73-14970DB85827}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F151AAE-D7D4-4AEC-BA73-14970DB85827}.Release|Any CPU.ActiveCfg = Release|Any CPU

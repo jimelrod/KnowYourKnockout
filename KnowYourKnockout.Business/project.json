@@ -2,9 +2,7 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "KnowYourKnockout.Common": "1.0.0-*",
     "KnowYourKnockout.Data": "1.0.0-*",
-    "KnowYourKnockout.Utility": "1.0.0-*",
     "NETStandard.Library": "1.6.1"
   },
 
